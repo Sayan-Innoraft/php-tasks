@@ -1,15 +1,14 @@
 <?php
 require 'Creds.php';
+require 'requests.php';
+
 $creds = new Creds();
 $access_key = $creds->getApiKey();
-function validOrNot($email_address):bool
+function isEmailValid($email_address):bool
 {
     global $access_key;
-    $ch = curl_init('http://apilayer.net/api/check?access_key=' . "{$access_key}".'&email='.$email_address);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    $json = curl_exec($ch);
-    curl_close($ch);
-    $validationResult = json_decode($json,true);
-    return $validationResult["format_valid"] && $validationResult["smtp_check"];
+    $url = 'http://apilayer.net/api/check?access_key=' . "$access_key".'&email='.$email_address;
+    $validation_result = json_decode(request($url),true);
+    return $validation_result["format_valid"] && $validation_result["smtp_check"];
 }
 ?>

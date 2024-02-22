@@ -1,6 +1,7 @@
 <?php
 // Include FPDF library
 require '../vendor/setasign/fpdf/fpdf.php';
+
 class PDF extends FPDF
 {
     function LoadData($data): array
