@@ -2,7 +2,7 @@
 require 'email_validation.php';
 function show_data($fullName,$email_address,$number,$image,$marks): void
 {
-    echo "\n<img style='height: 200px' src='{$image}' alt='Uploaded Image'>";
+    echo "\n<img src='$image' alt='Uploaded Image' height='200px'>";
     echo "<h1>Hello $fullName</h1>";
     echo "<h2>Subject Marks</h2>";
     echo "<table border='1px'>";

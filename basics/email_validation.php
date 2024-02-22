@@ -1,5 +1,7 @@
 <?php
-$access_key = '271485434e4ab5566585c2924dffa867';
+require 'Creds.php';
+$creds = new Creds();
+$access_key = $creds->getApiKey();
 function validOrNot($email_address):bool
 {
     global $access_key;
