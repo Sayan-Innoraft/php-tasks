@@ -16,7 +16,7 @@ function show_data($fullName,$email_address,$number,$image,$marks): void
     }
     echo "</table>";
     echo "<p>Phone Number: $number</p>";
-    $valid = true;
+//    $valid = true;
     $valid = validOrNot($email_address);
     echo $valid? $email_address . ' is a valid email address':$email_address . ' is not a valid email address';
 }

@@ -14,8 +14,8 @@ if (isset($_POST["submit"])) {
     $marks = $_POST["marks"];
     move_uploaded_file($_FILES["image"]["tmp_name"], $target_file);
     $image = $target_file;
-    show_data($full_name,$email_address,$number,$target_file,$marks);
+//    show_data($full_name,$email_address,$number,$target_file,$marks);
 //    sleep(1);
-//    generate_pdf($full_name,$email_address,$number,$image,$marks_data);
+    generate_pdf($full_name,$email_address,$number,$image,$marks_data);
 }
 ?>
