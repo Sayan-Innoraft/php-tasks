@@ -18,6 +18,5 @@ if (isset($_POST["submit"])) {
     /**
      * Generate the pdf file
      */
-    show_data($full_name, $email_address, $number, $image, $marks);
-//    generate_pdf($full_name, $email_address, $number, $image, $marks_data);
+    generate_pdf($full_name, $email_address, $number, $image, $marks_data);
 }
