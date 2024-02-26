@@ -2,14 +2,12 @@
 // Include FPDF library
 require '../vendor/setasign/fpdf/fpdf.php';
 
-class PDF extends FPDF
-{
+class PDF extends FPDF {
     function LoadData($data): array
     {
         return explode("\n",trim($data));
     }
-    function FancyTable($header, $data): void
-    {
+    function FancyTable($header, $data): void {
         // Colors, line width and bold font
         $this->SetFillColor(251, 86, 7);
         $this->SetTextColor(255);
@@ -31,8 +29,7 @@ class PDF extends FPDF
         $this->SetFont('');
         $fill = false;
 
-        foreach($data as $row)
-        {
+        foreach($data as $row) {
             $this->SetX($tableX);
             $row = explode("|",$row);
             $this->Cell($w[0],6,$row[0],'LR',0,'C',$fill);

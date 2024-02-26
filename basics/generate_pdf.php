@@ -1,6 +1,13 @@
 <?php
-function generate_pdf($full_name, $email_address, $number, $image, $marks_data): void
-{
+/**
+ * @param $full_name
+ * @param $email_address
+ * @param $number
+ * @param $image
+ * @param $marks_data
+ * @return void
+ */
+function generate_pdf($full_name, $email_address, $number, $image, $marks_data): void {
     $pdf = new PDF();
     $pdf->AddPage();
     $pdf->SetFont('Arial', 'B', 16);
@@ -17,6 +24,12 @@ function generate_pdf($full_name, $email_address, $number, $image, $marks_data):
     $pdf->SetFont('Arial', '', 14);
     $pdf->FancyTable($header, $data);
     $pdfFilePath = "docs/$email_address.pdf";
+    /**
+     * Saving the generated pdf file on server in the docs folder
+     */
     $pdf->Output("$pdfFilePath",'F');
+    /**
+     * Gives option to download the pdf file
+     */
     $pdf->Output();
 }

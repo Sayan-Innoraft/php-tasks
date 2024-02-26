@@ -1,8 +1,24 @@
 <?php
 require 'email_validation.php';
 
-function show_data($full_name, $email_address, $number, $image, $marks): void
-{
+/**
+ * @param string $full_name
+ * @param string $email_address
+ * @param string $number
+ * @param mixed $image
+ * @param string $marks
+ * @return void
+ */
+
+/**
+ * Prints the user data on the webpage
+ * @param string $full_name
+ * @param string $email_address
+ * @param string $number
+ * @param mixed $image
+ * @param string $marks
+ */
+function show_data(string $full_name, string $email_address, string $number, mixed $image, string $marks): void {
     ?>
     <h1>Hello
     <?= $full_name ?>
@@ -37,6 +53,9 @@ function show_data($full_name, $email_address, $number, $image, $marks): void
         <?= $number ?>
     </p>
     <?php
+    /**
+     * Checks if the input email address is valid or not
+     */
     $valid = isEmailValid($email_address);
     echo $valid ? $email_address . ' is a valid email address' : $email_address . ' is not a valid email address';
 }

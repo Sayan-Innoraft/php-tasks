@@ -2,7 +2,9 @@
 require 'pdf.php';
 require 'print_data.php';
 require 'generate_pdf.php';
-
+/**
+ * When submitting the values in the form , the values are stored in the server and generate the pdf file
+ */
 if (isset($_POST["submit"])) {
     $target_dir = "uploads/";
     $full_name =  $_POST["first_name"] . " " . $_POST["last_name"];
@@ -13,5 +15,9 @@ if (isset($_POST["submit"])) {
     $marks = $_POST["marks"];
     move_uploaded_file($_FILES["image"]["tmp_name"], $target_file);
     $image = $target_file;
-    generate_pdf($full_name, $email_address, $number, $image, $marks_data);
+    /**
+     * Generate the pdf file
+     */
+    show_data($full_name, $email_address, $number, $image, $marks);
+//    generate_pdf($full_name, $email_address, $number, $image, $marks_data);
 }
