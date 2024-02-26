@@ -1,5 +1,5 @@
 /**
- *
+ *  Concatenates first name , last name and fills the full name field
  */
 function fullName() {
     let firstName = document.getElementById('first_name').value;
