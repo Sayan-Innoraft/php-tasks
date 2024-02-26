@@ -16,7 +16,7 @@ if (isset($_POST["submit"])) {
     move_uploaded_file($_FILES["image"]["tmp_name"], $target_file);
     $image = $target_file;
     /**
-     * Generate the pdf file
+     * Generates the pdf file
      */
     generate_pdf($full_name, $email_address, $number, $image, $marks_data);
 }

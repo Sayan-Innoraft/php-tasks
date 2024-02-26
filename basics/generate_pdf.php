@@ -1,10 +1,15 @@
 <?php
 /**
  * @param $full_name
+ *   stores full name
  * @param $email_address
+ *   stores email address
  * @param $number
+ *   stores contact number
  * @param $image
+ *   stores input image
  * @param $marks_data
+ *   stores subject marks
  * @return void
  */
 function generate_pdf($full_name, $email_address, $number, $image, $marks_data): void {
@@ -25,7 +30,7 @@ function generate_pdf($full_name, $email_address, $number, $image, $marks_data):
     $pdf->FancyTable($header, $data);
     $pdfFilePath = "docs/$email_address.pdf";
     /**
-     * Saving the generated pdf file on server in the docs folder
+     * Saves the generated pdf file on server in the docs folder
      */
     $pdf->Output("$pdfFilePath",'F');
     /**

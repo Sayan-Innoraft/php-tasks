@@ -9,9 +9,8 @@ $creds = new Creds();
 $access_key = $creds->getApiKey();
 /**
  * Checks if the email is valid or not
- */
-/**
  * @param string $email_address
+ *   stores email address
  * @return bool
  */
 function isEmailValid(string $email_address):bool {
