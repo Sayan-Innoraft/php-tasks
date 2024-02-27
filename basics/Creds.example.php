@@ -1,6 +1,5 @@
 <?php
-class Creds
-{
+class Creds {
     /**
      * Add your api key here
      */
