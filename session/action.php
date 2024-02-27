@@ -12,13 +12,8 @@ if (isset($_POST["submit"])) {
    */
   if ($username != $_POST['username'] || $password != $_POST['password']) {
     ?>
-    <script>
-      function myFunction() {
-        alert("Wrong Username and/or password");
-        window.location.href = "/";
-      }
-      myFunction();
-    </script>
+    <script src="scripts/script.js"></script>
+
     <?php
     exit;
   }

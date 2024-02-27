@@ -2,6 +2,8 @@
 require 'pdf.php';
 
 /**
+ * generates pdf using user input data
+ *
  * @param $full_name
  *   stores full name
  * @param $email_address

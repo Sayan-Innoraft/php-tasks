@@ -3,8 +3,7 @@
 require '../vendor/setasign/fpdf/fpdf.php';
 
 class PDF extends FPDF {
-    function LoadData($data): array
-    {
+    function LoadData($data): array {
         return explode("\n",trim($data));
     }
     function FancyTable($header, $data): void {
