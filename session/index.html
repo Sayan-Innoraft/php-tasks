@@ -7,15 +7,33 @@
   <title>login</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
-
 <body>
-  <form action="action.php" method="post">
-    <label for="username">Username</label>
-    <input type="text" name="username" id="username">
-    <label for="password">Password</label>
-    <input type="password" name="password" id="password">
-    <input type="submit" value="Submit" name="submit">
-  </form>
+  <div class="outer-box">
+    <div class="inner-box">
+      <header class="login-header">
+        <h1>Log in</h1>
+      </header>
+      <main class="login-body">
+        <form action="action.php" method="post">
+          <p>
+            <label for="username">Username</label>
+            <input type="text" name="username" id="username"
+              placeholder="Sayan Manna" required>
+          </p>
+          <p>
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password"
+              placeholder="Atleast 8 characters" required>
+          </p>
+          <p>
+            <input type="submit" value="Submit" name="submit">
+          </p>
+        </form>
+      </main>
+    </div>
+    <div class="circle c1"></div>
+    <div class="circle c2"></div>
+  </div>
 </body>
 
 </html>

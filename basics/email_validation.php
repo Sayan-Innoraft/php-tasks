@@ -15,7 +15,7 @@ $access_key = $creds->getApiKey();
  */
 function isEmailValid(string $email_address):bool {
     global $access_key;
-    $url = 'http://apilayer.net/api/check?access_key=' . "$access_key".'&email='.$email_address;
+    $url = 'http://apilayer.net/api/check?access_key=' . $access_key . '&email=' . $email_address;
     /**
      * Calling request method to call the api  , get json file and parse it. Then parsing the json and storing values as associative array
      */

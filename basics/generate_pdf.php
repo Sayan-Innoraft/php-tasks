@@ -1,4 +1,6 @@
 <?php
+require 'pdf.php';
+
 /**
  * @param $full_name
  *   stores full name
@@ -12,6 +14,8 @@
  *   stores subject marks
  * @return void
  */
+
+
 function generate_pdf($full_name, $email_address, $number, $image, $marks_data): void {
     $pdf = new PDF();
     $pdf->AddPage();

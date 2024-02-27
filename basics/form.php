@@ -1,5 +1,4 @@
 <?php
-require 'pdf.php';
 require 'print_data.php';
 require 'generate_pdf.php';
 /**

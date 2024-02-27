@@ -7,9 +7,9 @@ $username = 'sayan';
 $password = '1234';
 
 if (isset($_POST["submit"])) {
-    /**
-     * checking if the username and passwords are  valid else go back to login page after showing alert
-     */
+  /**
+   * checking if the username and passwords are  valid else go back to login page after showing alert
+   */
   if ($username != $_POST['username'] || $password != $_POST['password']) {
     ?>
     <script>
@@ -22,9 +22,9 @@ if (isset($_POST["submit"])) {
     <?php
     exit;
   }
-    /**
-     * Storing the username and password in the super-global variable SESSION
-     */
+  /**
+   * Storing the username and password in the super-global variable SESSION
+   */
   $_SESSION['username'] = $_POST['username'];
   $_SESSION['password'] = $_POST['password'];
 }
@@ -36,17 +36,17 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 } else {
 
   require "header.php";
-    /**
-     * Getting the query parameter value from  parsing query string. If  the query parameter value is valid then go to targeted page elso show error
-     */
+  /**
+   * Getting the query parameter value from  parsing query string. If  the query parameter value is valid then go to targeted page elso show error
+   */
   parse_str($_SERVER['QUERY_STRING'], $parameters);
   if (isset($parameters['q'])) {
     if ($parameters['q'] > 0 && $parameters['q'] <= 7) {
       include "{$parameters['q']}.html";
     } else {
-      ?>
-      <h1>Invalid Request</h1>
-      <?php
+      include "invalid.html";
     }
   }
 }
+?>
+
