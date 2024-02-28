@@ -1,24 +1,22 @@
 <?php
-require 'pdf.php';
+
+require 'PDF.php';
 
 /**
- * generates pdf using user input data
+ * Generates pdf using user input data.
  *
- * @param $full_name
- *   stores full name
- * @param $email_address
- *   stores email address
- * @param $number
- *   stores contact number
- * @param $image
- *   stores input image
- * @param $marks_data
- *   stores subject marks
- * @return void
+ * @param string $full_name
+ *   User's full name.
+ * @param string $email_address
+ *   User's email address.
+ * @param string $number
+ *   User's contact number.
+ * @param mixed $image
+ *   User's input image.
+ * @param string $marks
+ *   User's subject marks.
  */
-
-
-function generate_pdf($full_name, $email_address, $number, $image, $marks_data): void {
+function generate_pdf(string $full_name, string $email_address, string $number, mixed $image, string $marks): void {
     $pdf = new PDF();
     $pdf->AddPage();
     $pdf->SetFont('Arial', 'B', 16);
@@ -31,16 +29,12 @@ function generate_pdf($full_name, $email_address, $number, $image, $marks_data):
     $width = $pdf->GetPageWidth();
     $pdf->Image("$image", $width - 60, 10, 50);
     $header = array('Subject', 'Marks');
-    $data = $pdf->LoadData($marks_data);
+    $data = $pdf->LoadData($marks);
     $pdf->SetFont('Arial', '', 14);
     $pdf->FancyTable($header, $data);
     $pdfFilePath = "docs/$email_address.pdf";
-    /**
-     * Saves the generated pdf file on server in the docs folder
-     */
+    // Saves the generated pdf file on server in the docs folder.
     $pdf->Output("$pdfFilePath",'F');
-    /**
-     * Gives option to download the pdf file
-     */
+    // Gives option to download the pdf file.
     $pdf->Output();
 }

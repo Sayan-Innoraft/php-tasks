@@ -1,3 +1,7 @@
+<?php
+
+require 'validation.php'
+?>
 <!DOCTYPE html>
 <html lang="en">
 

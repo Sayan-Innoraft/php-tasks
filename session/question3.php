@@ -1,3 +1,7 @@
+<?php
+
+require 'validation.php'
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,9 +15,10 @@
 <body>
   <div class="question-box">
     <p class="question">
-      2. Add a new field to accept user image in addition to the above fields. On
-      submit store the image in the backend and display it with the full name below
-      it.
+      3. Add a text area to the above form and accept marks of different
+      subjects in
+      the format, English|80. One subject in each line. Once values entered and
+      submitted, accept them to display the values in the form of a table.
     </p>
   </div>
 

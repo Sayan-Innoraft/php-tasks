@@ -1,3 +1,7 @@
+<?php
+
+require 'validation.php'
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,11 +15,9 @@
 <body>
   <div class="question-box">
     <p class="question">
-      4. Add a new text field to the above form to accept the phone number from
-      the
-      user. The number will belong to an Indian user. So, the number should
-      begin
-      with +91 and not be more than 10 digits.
+      2. Add a new field to accept user image in addition to the above fields. On
+      submit store the image in the backend and display it with the full name below
+      it.
     </p>
   </div>
 

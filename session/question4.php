@@ -1,3 +1,7 @@
+<?php
+
+require 'validation.php'
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,10 +15,11 @@
 <body>
   <div class="question-box">
     <p class="question">
-      3. Add a text area to the above form and accept marks of different
-      subjects in
-      the format, English|80. One subject in each line. Once values entered and
-      submitted, accept them to display the values in the form of a table.
+      4. Add a new text field to the above form to accept the phone number from
+      the
+      user. The number will belong to an Indian user. So, the number should
+      begin
+      with +91 and not be more than 10 digits.
     </p>
   </div>
 
