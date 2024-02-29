@@ -1,15 +1,35 @@
 <?php
 
-// Include FPDF library
-require '../vendor/autoload.php';
+require '../../vendor/autoload.php';
 
-// Customized PDF class extending FPDF class.
+/**
+ * Customized PDF class extending FPDF class.
+ */
 class PDF extends FPDF {
-  function LoadData($data): array {
+
+  /**
+   * Parse the subject marks string and returns as string array using new line.
+   *
+   * @param string $data
+   *   Subjects and marks data.
+   *
+   * @return array
+   *   Returns string array splitting data string using new line.
+   *
+   */
+  function LoadData(string $data): array {
     return explode("\n", trim($data));
   }
 
-  function FancyTable($header, $data): void {
+  /**
+   * Takes header and data, then creates a customized table.
+   *
+   * @param array $header
+   *   Header includes the table headers.
+   * @param array $data
+   *   Array of strings containing subject and marks data.
+   */
+  function FancyTable(array $header, array $data): void {
 
     // Colors, line width and bold font.
     $this->SetFillColor(251, 86, 7);
@@ -47,4 +67,5 @@ class PDF extends FPDF {
     $this->SetX($tableX);
     $this->Cell(array_sum($w), 0, '', 'T');
   }
+
 }
