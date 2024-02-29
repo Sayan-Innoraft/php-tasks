@@ -2,7 +2,7 @@
 
 session_start();
 
-// If the user is already logged in then redirect to homepage.
+// If the user is already logged in then redirects to homepage.
 if(isset($_SESSION['username']) && isset($_SESSION['password'])){
   header('Location:homepage.php');
   exit();

@@ -12,7 +12,7 @@ if (isset($_POST['submit'])) {
   if ($username != $_POST['username'] || $password != $_POST['password']) {
 
     // Setting error key in SESSION to show error message.
-    $_SESSION['error'] = 'Wrong sername and/or Password';
+    $_SESSION['error'] = 'Wrong username and/or Password';
 
     // Redirect back to login page.
     header('Location:/');
