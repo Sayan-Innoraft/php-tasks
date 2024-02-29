@@ -7,11 +7,13 @@
 body {
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
+
 body .outer-box {
   width: 100vw;
   height: 100vh;
-  background: linear-gradient(to top left, #3ed8ff, #a8f5ff);
+  background: linear-gradient(to top left, #e87b00, #fdd048);
 }
+
 body .outer-box .inner-box {
   margin: auto;
   position: relative;
@@ -22,25 +24,30 @@ body .outer-box .inner-box {
   border: 3px solid white;
   border-radius: 10px;
   -webkit-backdrop-filter: blur(8px);
-          backdrop-filter: blur(8px);
-  box-shadow: 1px 1px 5px #2779b0;
+  backdrop-filter: blur(8px);
+  box-shadow: 1px 1px 5px #ef5a0a;
   z-index: 2;
 }
+
 body .outer-box .inner-box header {
   font-size: 2.5rem;
   color: #212121;
 }
-body .outer-box .inner-box .login-body {
+
+body .outer-box .inner-box .mail-body {
   margin: 20px 0;
 }
-body .outer-box .inner-box .login-body p {
+
+body .outer-box .inner-box .mail-body p {
   margin: 10px 0;
 }
-body .outer-box .inner-box .login-body p label {
+
+body .outer-box .inner-box .mail-body p label {
   display: block;
   font-weight: bold;
 }
-body .outer-box .inner-box .login-body p input {
+
+body .outer-box .inner-box .mail-body p input {
   margin-top: 4px;
   width: 100%;
   padding: 10px;
@@ -48,22 +55,27 @@ body .outer-box .inner-box .login-body p input {
   border: 2px solid rgba(204, 204, 204, 0.8);
   border-radius: 5px;
 }
-body .outer-box .inner-box .login-body p input[type=submit] {
-  background-color: #3498db;
+
+body .outer-box .inner-box .mail-body p input[type=submit] {
+  background-color: #ff6200;
   border: none;
   color: white;
   cursor: pointer;
 }
-body .outer-box .inner-box .login-body p input[type=submit]:hover {
-  background-color: #2779b0;
+
+body .outer-box .inner-box .mail-body p input[type=submit]:hover {
+  background-color: #d54000;
 }
+
 body .outer-box .inner-box .signup-footer p {
   color: #555;
   text-align: center;
 }
+
 body .outer-box .inner-box .signup-footer p a {
   color: #2779b0;
 }
+
 body .outer-box .circle {
   height: 200px;
   width: 200px;
@@ -71,11 +83,15 @@ body .outer-box .circle {
   background: linear-gradient(to top right, rgba(255, 255, 255, 0.2), white);
   position: absolute;
 }
+
 body .outer-box .c1 {
   top: 150px;
   left: 40px;
 }
+
 body .outer-box .c2 {
   top: 400px;
   right: 40px;
-}/*# sourceMappingURL=style.css.map */
+}
+
+/*# sourceMappingURL=style.css.map */
