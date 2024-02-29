@@ -7,7 +7,6 @@
 </head>
 
 <!-- Welcomes user after authenticating the username and password successfully  -->
-
 <body>
   <div class="outer-box">
     <p class="name">Hello

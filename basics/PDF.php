@@ -1,7 +1,7 @@
 <?php
 
 // Include FPDF library
-require '../vendor/setasign/fpdf/fpdf.php';
+require '../vendor/autoload.php';
 
 // Customized PDF class extending FPDF class.
 class PDF extends FPDF {
@@ -10,6 +10,7 @@ class PDF extends FPDF {
   }
 
   function FancyTable($header, $data): void {
+
     // Colors, line width and bold font.
     $this->SetFillColor(251, 86, 7);
     $this->SetTextColor(255);
@@ -20,11 +21,13 @@ class PDF extends FPDF {
     $pageWidth = $this->GetPageWidth();
     $tableX = ($pageWidth - $tableWidth) / 2;
     $this->SetX($tableX);
+
     // Header.
     $w = array(40, 40);
     for ($i = 0; $i < count($header); $i++)
       $this->Cell($w[$i], 7, $header[$i], 1, 0, 'C', true);
     $this->Ln();
+
     // Color and font restoration.
     $this->SetFillColor(224, 235, 255);
     $this->SetTextColor(0);
@@ -39,6 +42,7 @@ class PDF extends FPDF {
       $this->Ln();
       $fill = !$fill;
     }
+
     // Closing line.
     $this->SetX($tableX);
     $this->Cell(array_sum($w), 0, '', 'T');

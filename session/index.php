@@ -1,6 +1,15 @@
 <?php
+
 session_start();
-$msg = isset($_SESSION['error']) ? 'Wrong Username and/or Password' : '';
+
+// If the user is already logged in then redirect to homepage.
+if(isset($_SESSION['username']) && isset($_SESSION['password'])){
+  header('Location:homepage.php');
+  exit();
+}
+
+// If the user puts wrong credentials then show a waring message on the login page.
+$msg = $_SESSION['error'] ?? '';
 unset($_SESSION['error']);
 ?>
 <!DOCTYPE html>
@@ -20,7 +29,7 @@ unset($_SESSION['error']);
         <h1>Log in</h1>
       </header>
       <main class="login-body">
-        <form action="action.php" method="post">
+        <form action="homepage.php" method="post">
           <p>
             <label for="username">Username</label>
             <input type="text" name="username" id="username"

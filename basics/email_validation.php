@@ -12,10 +12,10 @@ require 'requests.php';
  * @return bool
  *   Returns true if email address is valid else returns false.
  */
-function isEmailValid(string $email_address): bool
-{
+function isEmailValid(string $email_address): bool {
   global $api_key;
   $url = 'http://apilayer.net/api/check?access_key=' . $api_key . '&email=' . $email_address;
+
   // Calling request method to call the api, get json file and parse it.Then parsing the json and storing values as associative array.
   $validation_result = json_decode(request($url), true);
   return $validation_result['format_valid'] && $validation_result['smtp_check'];

@@ -6,13 +6,13 @@ session_start();
 $username = 'sayan';
 $password = '1234';
 
-if (isset($_POST['submit'])) {
 
+if (isset($_POST['submit'])) {
   // Checking if the username and passwords are valid else go back to login page after showing alert.
   if ($username != $_POST['username'] || $password != $_POST['password']) {
 
     // Setting error key in SESSION to show error message.
-    $_SESSION['error'] = 'error';
+    $_SESSION['error'] = 'Wrong sername and/or Password';
 
     // Redirect back to login page.
     header('Location:/');
@@ -26,9 +26,11 @@ if (isset($_POST['submit'])) {
 }
 
 // If username and passwords aren't stored in the SESSION variable then go back to login page.
-if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
+if (!isset($_SESSION['username']) || !isset($_SESSION['password'])) {
   header('Location: /');
+  exit();
 } else {
+
   require 'header.php';
 
   // Getting the query parameter value from  parsing query string. If  the query parameter value is valid then go to targeted page elso show error.

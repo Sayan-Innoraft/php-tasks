@@ -33,8 +33,10 @@ function generate_pdf(string $full_name, string $email_address, string $number, 
     $pdf->SetFont('Arial', '', 14);
     $pdf->FancyTable($header, $data);
     $pdfFilePath = "docs/$email_address.pdf";
+
     // Saves the generated pdf file on server in the docs folder.
     $pdf->Output("$pdfFilePath",'F');
+
     // Gives option to download the pdf file.
     $pdf->Output();
 }
