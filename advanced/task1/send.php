@@ -8,7 +8,6 @@ session_start();
 
 // Gets SMTP username and password from creds.php file.
 global $username, $password;
-
 if(isset($_POST['submit'])) {
   $email = $_POST['email'];
 
