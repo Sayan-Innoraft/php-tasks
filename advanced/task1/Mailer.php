@@ -39,7 +39,7 @@ class Mailer extends PHPMailer {
   function sendMail(string $addressFrom, string $recipient, bool $isHtml, string $subject, string $body): bool {
     try {
 
-      // Sets senders mail address
+      // Sets senders mail address.
       $this->setFrom($addressFrom);
 
       // Adds recipient.
