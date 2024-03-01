@@ -1,12 +1,9 @@
 <?php
 
+require 'creds.php';
+
 session_start();
-
-// Hard-coding the username and passwords.
-$username = 'sayan';
-$password = '1234';
-
-
+global $username,$password;
 if (isset($_POST['submit'])) {
   // If username and password do not match, then redirects to login page.
   if ($username != $_POST['username'] || $password != $_POST['password']) {

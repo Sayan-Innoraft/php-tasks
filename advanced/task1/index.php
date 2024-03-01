@@ -1,3 +1,13 @@
+<?php
+
+session_start();
+
+// Setting txt variable values according to feedback from send.php to display feedback on homepage.
+$txt = $_SESSION['alert'] ?? '';
+unset($_SESSION['alert']);
+session_unset();
+session_destroy();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,7 +26,7 @@
         <form action="send.php" method="post">
           <p>
             <label for="email">Username</label>
-            <input type="text" name="email" id="email"
+            <input type="email" name="email" id="email"
               placeholder="abc@example.com" required>
           </p>
           <p>
@@ -24,7 +34,7 @@
           </p>
         </form>
       </main>
-
+      <p id="feedback"><?=$txt ?></p>
     </div>
     <div class="circle c1"></div>
     <div class="circle c2"></div>

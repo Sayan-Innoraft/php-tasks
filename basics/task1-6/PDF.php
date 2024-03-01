@@ -15,7 +15,6 @@ class PDF extends FPDF {
    *
    * @return array
    *   Returns string array splitting data string using new line.
-   *
    */
   function LoadData(string $data): array {
     return explode("\n", trim($data));

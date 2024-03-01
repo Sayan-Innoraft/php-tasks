@@ -10,7 +10,7 @@ body {
   .outer-box {
     width: 100vw;
     height: 100vh;
-    background: linear-gradient(to top left, #e87b00, #d46700);
+    background: linear-gradient(to top left, #e87b00, #ffaf65);
 
     .inner-box {
       margin: auto;
@@ -73,6 +73,9 @@ body {
         }
       }
 
+      #feedback {
+        color: red;
+      }
     }
 
     .circle {
@@ -93,4 +96,5 @@ body {
       right: 40px;
     }
   }
+
 }
