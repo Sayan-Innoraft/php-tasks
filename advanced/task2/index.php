@@ -2,8 +2,8 @@
 
 require 'API.php';
 
-// Creates object of API class to call api.
 $api = new API();
+
 ?>
 
 <!DOCTYPE html>
@@ -17,7 +17,7 @@ $api = new API();
 </head>
 
 <body>
-  <div class="menu"></div>
+  div.menu
   <header>
     <img
       src="https://www.innoraft.com/themes/custom/ir_revamp_theme/images/innoraft-logo.png"
@@ -63,25 +63,13 @@ $api = new API();
     </div>
     <div class='container'>
       <section>
-
-        <!-- Gets the url to the parent page.-->
-        <?php $web_path = $api::getParentLinks(ParentServices::Website) ?>
-
-        <!-- Parent service page link embedded thumbnail images. -->
-        <a href=<?= $web_path ?>>
-          <img src="<?= $api::getImages(ParentServices::Website) ?>"></a>
+        <img src="<?= $api::getImages(ParentServices::Website) ?>">
         <div class="text-card-container">
           <div class="text-card">
-
-            <!-- Parent service page link embedded parent service name header. -->
-            <a href=<?= $web_path ?>>
-              <p class="org">WEBSITE DESIGN &</p>
-              <p>DEVELOPMENT</p>
-            </a>
+            <p class="org">WEBSITE DESIGN &</p>
+            <p>DEVELOPMENT</p>
             <ul class='icon-list'>
               <?php
-
-              // Gets the service icons of the parent service.
               $icons = $api::getParentIcons(ParentServices::Website);
               foreach ($icons as $icon) {
                 ?>
@@ -92,42 +80,27 @@ $api = new API();
             </ul>
             <ul class='service-list'>
               <?php
-
-              // Gets the children service names as keys and children service links as values.
               $services = $api::getServicesWithLinks(ParentServices::Website);
               foreach ($services as $service => $link) {
                 ?>
-                <li><a href=<?= $link ?>><span>&#9675; </span>
-                    <?= $service ?>
-                  </a> </li>
+                <li><a href=<?=$link ?>><span>&#9675; </span><?= $service ?></a> </li>
                 <?php
               }
               ?>
             </ul>
-
-            <!-- Parent service page link embedded button. -->
-            <a class="btn" href=<?= $web_path ?>>EXPLORE MORE</a>
+          <a class="btn" href="<?= $api::getParentLinks(ParentServices::Website)?>">EXPLORE MORE</a>
           </div>
         </div>
       </section>
     </div>
     <div class='container'>
       <section>
-
-        <!-- Gets the url to the parent page.-->
-        <?php $drupal_path = $api::getParentLinks(ParentServices::Drupal); ?>
         <div class="text-card-container">
           <div class="text-card">
-
-            <!-- Parent service page link embedded parent service name header. -->
-            <a href=<?= $drupal_path ?>>
-              <p class="org">DRUPAL DEVELOPMENT</p>
-              <p>& MAINTENANCE</p>
-            </a>
+            <p class="org">DRUPAL DEVELOPMENT</p>
+            <p>& MAINTENANCE</p>
             <ul class='icon-list'>
               <?php
-
-              // Gets the service icons of the parent service.
               $icons = $api::getParentIcons(ParentServices::Drupal);
               foreach ($icons as $icon) {
                 ?>
@@ -138,50 +111,29 @@ $api = new API();
             </ul>
             <ul class='service-list'>
               <?php
-
-              // Gets the children service names as keys and children service links as values.
               $services = $api::getServicesWithLinks(ParentServices::Drupal);
               foreach ($services as $service => $link) {
                 ?>
-                <li><a href=<?= $link ?>><span>&#9675; </span>
-                    <?= $service ?>
-                  </a> </li>
+                <li><a href=<?=$link ?>><span>&#9675; </span><?= $service ?></a> </li>
                 <?php
               }
               ?>
             </ul>
-
-            <!-- Parent service page link embedded button. -->
-            <a class="btn" href="<?= $drupal_path ?>">EXPLORE MORE</a>
+          <a class="btn" href="<?= $api::getParentLinks(ParentServices::Drupal)?>">EXPLORE MORE</a>
           </div>
         </div>
-
-        <!-- Parent service page link embedded thumbnail images. -->
-        <a href=<?= $drupal_path ?>><img
-            src="<?= $api::getImages(ParentServices::Drupal) ?>"></a>
+        <img src="<?= $api::getImages(ParentServices::Drupal) ?>">
       </section>
     </div>
     <div class='container'>
       <section>
-
-        <!-- Gets the url to the parent page.-->
-        <?php $mobile_path = $api::getParentLinks(ParentServices::Mobile); ?>
-
-        <!-- Parent service page link embedded thumbnail images. -->
-        <a href=<?= $mobile_path ?>>
-          <img src="<?= $api::getImages(ParentServices::Mobile) ?>"></a>
+        <img src="<?= $api::getImages(ParentServices::Mobile) ?>">
         <div class="text-card-container">
           <div class="text-card">
-
-            <!-- Parent service page link embedded parent service name header. -->
-            <a href=<?= $mobile_path ?>>
-              <p class="org">MOBILE APP</p>
-              <p>DEVELOPMENT</p>
-            </a>
+            <p class="org">MOBILE APP</p>
+            <p>DEVELOPMENT</p>
             <ul class='icon-list'>
               <?php
-
-              // Gets the service icons of the parent service.
               $icons = $api::getParentIcons(ParentServices::Mobile);
               foreach ($icons as $icon) {
                 ?>
@@ -192,42 +144,27 @@ $api = new API();
             </ul>
             <ul class='service-list'>
               <?php
-
-              // Gets the children service names as keys and children service links as values.
               $services = $api::getServicesWithLinks(ParentServices::Mobile);
               foreach ($services as $service => $link) {
                 ?>
-                <li><a href=<?= $link ?>><span>&#9675; </span>
-                    <?= $service ?>
-                  </a> </li>
+                <li><a href=<?=$link ?>><span>&#9675; </span><?= $service ?></a> </li>
                 <?php
               }
               ?>
             </ul>
-
-            <!-- Parent service page link embedded button. -->
-            <a class="btn" href="<?= $mobile_path ?>">EXPLORE MORE</a>
+          <a class="btn" href="<?= $api::getParentLinks(ParentServices::Mobile)?>">EXPLORE MORE</a>
           </div>
         </div>
       </section>
     </div>
     <div class='container'>
       <section>
-
-        <!-- Gets the url to the parent page.-->
-        <?php $ecom_path = $api::getParentLinks(ParentServices::ECommerce); ?>
         <div class="text-card-container">
           <div class="text-card">
-
-            <!-- Parent service page link embedded parent service name header. -->
-            <a href=<?= $ecom_path ?>>
-              <p class='org'>ECOMMERCE</p>
-              <p> WEB SOLUTIONS</p>
-            </a>
+            <p class='org'>ECOMMERCE</p>
+            <p> WEB SOLUTIONS</p>
             <ul class='icon-list'>
               <?php
-
-              // Gets the service icons of the parent service.
               $icons = $api::getParentIcons(ParentServices::ECommerce);
               foreach ($icons as $icon) {
                 ?>
@@ -238,30 +175,18 @@ $api = new API();
             </ul>
             <ul class='service-list'>
               <?php
-
-              // Gets the children service names as keys and children service links as values.
               $services = $api::getServicesWithLinks(ParentServices::ECommerce);
-
-              // Displaying the service names embedded with the page links to their associative names.
               foreach ($services as $service => $link) {
                 ?>
-                <li><a href=<?= $link ?>><span>&#9675; </span>
-                    <?= $service ?>
-                  </a> </li>
+                <li><a href=<?= $link ?>><span>&#9675; </span><?= $service ?></a> </li>
                 <?php
               }
               ?>
             </ul>
-
-            <!-- Parent service page link embedded button. -->
-            <a class="btn" href="<?= $ecom_path ?>">EXPLORE MORE</a>
+          <a class="btn" href="<?= $api::getParentLinks(ParentServices::ECommerce)?>">EXPLORE MORE</a>
           </div>
         </div>
-
-        <!-- Parent service page link embedded thumbnail images. -->
-        <a href=<?= $ecom_path ?>>
-          <img src="<?= $api::getImages(ParentServices::ECommerce) ?>">
-        </a>
+        <img src="<?= $api::getImages(ParentServices::ECommerce) ?>">
       </section>
     </div>
 

@@ -47,20 +47,20 @@ if(isset($_POST['submit'])) {
     // If mail sent successfully, display success alert and redirects to homepage.
     if($check) {
       $_SESSION['alert'] = 'Mail sent successfully';
-      header('Location:/task1/index.php');
+      header('Location:/task2/index.php');
       exit();
     } else {
 
       // If mail isn't sent successfully, display error alert and redirects to homepage.
       $_SESSION['alert'] = 'Error sending mail';
-      header('Location:/task1/index.php');
+      header('Location:/task2/index.php');
       exit();
     }
   } else {
 
     // If input email address is invalid, display invalid alert and redirects to homepage.
     $_SESSION['alert'] = 'Invalid Email Address';
-    header('Location:/task1/index.php');
+    header('Location:/task2/index.php');
     exit();
   }
 }
