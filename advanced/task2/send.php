@@ -12,7 +12,7 @@ if(isset($_POST['submit'])) {
   $email = $_POST['email'];
 
   // Checks if input email address valid or not.
-  if(isEmailValid($email)) {
+  if(is_email_valid($email)) {
 
     // Constructor takes exception, hostname, SMTP username, SMTP password, encryption type,
     // port number to create object using Mailer class.

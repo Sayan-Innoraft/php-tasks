@@ -12,7 +12,7 @@ require 'requests.php';
  * @return bool
  *   Returns true if email address is valid else returns false.
  */
-function isEmailValid(string $email_address): bool {
+function is_email_valid(string $email_address): bool {
   global $api_key;
   $url = 'http://apilayer.net/api/check?access_key=' . $api_key . '&email=' . $email_address;
 

@@ -7,3 +7,18 @@ function setFullName() {
   fullNameField = document.getElementById('full_name');
   fullNameField.value = firstName + ' ' + lastName;
 }
+
+/**
+ * Displays the suer input image file on webpage.
+ */
+var openFile = function(file) {
+  var input = file.target;
+  var reader = new FileReader();
+  reader.onload = function(){
+    var dataURL = reader.result;
+    var output = document.getElementById('output');
+    output.style.display = 'block';
+    output.src = dataURL;
+  };
+  reader.readAsDataURL(input.files[0]);
+};

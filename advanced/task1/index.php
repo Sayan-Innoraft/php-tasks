@@ -19,7 +19,7 @@ $api = new API();
 <body>
   <div class="menu"></div>
   <header>
-    <img
+    <img loading="lazy"
       src="https://www.innoraft.com/themes/custom/ir_revamp_theme/images/innoraft-logo.png"
       alt="">
   </header>
@@ -33,7 +33,7 @@ $api = new API();
         it. We
         always want to be partners to our clients.
       </p>
-      <img
+      <img loading="lazy"
         src="https://www.innoraft.com/sites/default/files/2020-11/service-banner.png">
     </div>
   </div>
@@ -69,7 +69,8 @@ $api = new API();
 
         <!-- Parent service page link embedded thumbnail images. -->
         <a href=<?= $web_path ?>>
-          <img src="<?= $api::getImages(ParentServices::Website) ?>"></a>
+          <img   loading="lazy" src="<?= $api::getImages(ParentServices::Website) ?>"
+                 alt="WEBSITE DESIGN & DEVELOPMENT"></a>
         <div class="text-card-container">
           <div class="text-card">
 
@@ -85,7 +86,7 @@ $api = new API();
               $icons = $api::getParentIcons(ParentServices::Website);
               foreach ($icons as $icon) {
                 ?>
-                <li><img src="<?= $icon ?>"></li>
+                <li><img  loading="lazy" src="<?= $icon ?>" alt=""></li>
                 <?php
               }
               ?>
@@ -131,7 +132,7 @@ $api = new API();
               $icons = $api::getParentIcons(ParentServices::Drupal);
               foreach ($icons as $icon) {
                 ?>
-                <li><img src="<?= $icon ?>"></li>
+                <li><img   loading="lazy" src="<?= $icon ?>"></li>
                 <?php
               }
               ?>
@@ -157,8 +158,8 @@ $api = new API();
         </div>
 
         <!-- Parent service page link embedded thumbnail images. -->
-        <a href=<?= $drupal_path ?>><img
-            src="<?= $api::getImages(ParentServices::Drupal) ?>"></a>
+        <a href=<?= $drupal_path ?>>
+          <img   loading="lazy" src="<?= $api::getImages(ParentServices::Drupal) ?>"></a>
       </section>
     </div>
     <div class='container'>
@@ -169,7 +170,7 @@ $api = new API();
 
         <!-- Parent service page link embedded thumbnail images. -->
         <a href=<?= $mobile_path ?>>
-          <img src="<?= $api::getImages(ParentServices::Mobile) ?>"></a>
+          <img   loading="lazy" src="<?= $api::getImages(ParentServices::Mobile) ?>"></a>
         <div class="text-card-container">
           <div class="text-card">
 
@@ -185,7 +186,7 @@ $api = new API();
               $icons = $api::getParentIcons(ParentServices::Mobile);
               foreach ($icons as $icon) {
                 ?>
-                <li><img src="<?= $icon ?>"></li>
+                <li><img   loading="lazy" src="<?= $icon ?>"></li>
                 <?php
               }
               ?>
@@ -231,7 +232,7 @@ $api = new API();
               $icons = $api::getParentIcons(ParentServices::ECommerce);
               foreach ($icons as $icon) {
                 ?>
-                <li><img src="<?= $icon ?>"></li>
+                <li><img   loading="lazy" src="<?= $icon ?>"></li>
                 <?php
               }
               ?>
@@ -260,7 +261,7 @@ $api = new API();
 
         <!-- Parent service page link embedded thumbnail images. -->
         <a href=<?= $ecom_path ?>>
-          <img src="<?= $api::getImages(ParentServices::ECommerce) ?>">
+          <img   loading="lazy" src="<?= $api::getImages(ParentServices::ECommerce) ?>">
         </a>
       </section>
     </div>

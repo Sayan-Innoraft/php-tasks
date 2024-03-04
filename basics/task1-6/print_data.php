@@ -1,7 +1,5 @@
 <?php
 
-require 'email_validation.php';
-
 /**
  * Prints the user data on the webpage
  *
@@ -53,6 +51,6 @@ function show_data(string $full_name, string $email_address, string $number, mix
   <?php
 
   //Checks if the input email address is valid or not.
-  $valid = isEmailValid($email_address);
+  $valid = is_email_valid($email_address);
   echo $valid ? $email_address . ' is a valid email address' : $email_address . ' is not a valid email address';
 }

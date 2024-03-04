@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b36c180d6c6d1c769b2561149b7f4bd2",
+    "content-hash": "b6766158313281d32321d430f8359a6c",
     "packages": [
         {
             "name": "phpmailer/phpmailer",
@@ -142,7 +142,8 @@
     "prefer-lowest": false,
     "platform": {
         "ext-curl": "*",
-        "ext-mysqli": "*"
+        "ext-mysqli": "*",
+        "ext-ctype": "*"
     },
     "platform-dev": [],
     "plugin-api-version": "2.6.0"
