@@ -2,7 +2,8 @@
 
 session_start();
 
-// Setting txt variable values according to feedback from send.php to display feedback on homepage.
+// Setting txt variable values according to feedback from send.php to display
+// feedback on homepage.
 $txt = $_SESSION['alert'] ?? '';
 unset($_SESSION['alert']);
 session_unset();

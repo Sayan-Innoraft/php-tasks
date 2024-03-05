@@ -140,7 +140,7 @@ $api = new API();
             <ul class='service-list'>
               <?php
 
-              // Gets the children service names as keys and children service links as values.
+              // Gets the children service names as keys and children service links as values
               $services = $api::getServicesWithLinks(ParentServices::Drupal);
               foreach ($services as $service => $link) {
                 ?>
@@ -194,7 +194,8 @@ $api = new API();
             <ul class='service-list'>
               <?php
 
-              // Gets the children service names as keys and children service links as values.
+              // Gets the children service names as keys and children service
+              // links as values.
               $services = $api::getServicesWithLinks(ParentServices::Mobile);
               foreach ($services as $service => $link) {
                 ?>
@@ -220,7 +221,8 @@ $api = new API();
         <div class="text-card-container">
           <div class="text-card">
 
-            <!-- Parent service page link embedded parent service name header. -->
+            <!-- Parent service page link embedded parent service name header
+            . -->
             <a href=<?= $ecom_path ?>>
               <p class='org'>ECOMMERCE</p>
               <p> WEB SOLUTIONS</p>
@@ -240,10 +242,12 @@ $api = new API();
             <ul class='service-list'>
               <?php
 
-              // Gets the children service names as keys and children service links as values.
+              // Gets the children service names as keys and children service
+              // links as values.
               $services = $api::getServicesWithLinks(ParentServices::ECommerce);
 
-              // Displaying the service names embedded with the page links to their associative names.
+              // Displaying the service names embedded with the page links to
+              // their associative names.
               foreach ($services as $service => $link) {
                 ?>
                 <li><a href=<?= $link ?>><span>&#9675; </span>

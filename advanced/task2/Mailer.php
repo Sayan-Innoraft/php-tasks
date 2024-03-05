@@ -11,7 +11,8 @@ use PHPMailer\PHPMailer\PHPMailer;
 class Mailer extends PHPMailer {
 
   /**
-   * Sets exception value to the parent class while creating object of Mailer class.
+   * Sets exception value to the parent class while creating object of Mailer
+   * class.
    *
    * @param bool $exception
    *   If we need to turn exception on or off.
@@ -36,7 +37,8 @@ class Mailer extends PHPMailer {
    * @return bool
    *   Returns true if mail is sent successfully else returns false.
    */
-  function sendMail(string $addressFrom, string $recipient, bool $isHtml, string $subject, string $body): bool {
+  function sendMail(string $addressFrom, string $recipient, bool $isHtml,
+                    string $subject, string $body): bool {
     try {
 
       // Sets senders mail address.

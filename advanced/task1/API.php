@@ -4,7 +4,8 @@ require 'requests.php';
 require 'ParentServices.php';
 
 /**
- * Api class stores all the required data in an associative array and returns it as needed.
+ * Api class stores all the required data in an associative array and returns
+ * it as needed.
  */
 class API {
 
@@ -37,13 +38,14 @@ class API {
     for ($i = 0; $i < sizeof(self::$data) - 4; $i++) {
 
       // Gets parent service data to the current node.
-      $parent_details = json_decode(
-        request(self::$data[$i]['relationships']['field_service_parent']['links']['related']['href'])
+      $parent_details = json_decode(request(
+        self::$data[$i]['relationships']['field_service_parent']['links']['related']['href'])
         , true);
       $parent_name = $parent_details['data']['attributes']['title'] ?? 'NULL';
       $child_name = self::$data[$i]['attributes']['title'] ?? 'NULL';
 
-      // Sets parent service name to children service names and children service name to their page links.
+      // Sets parent service name to children service names and children
+      // service name to their page links.
       self::$root[$parent_name]['children'][$child_name] =
         self::$domain . self::$data[$i]['attributes']['path']['alias'];
     }
@@ -54,14 +56,14 @@ class API {
       $parent_name = self::$data[$i]['attributes']['title'] ?? 'NULL';
 
       // Gets the current parent service data to get corresponding icons.
-      $parent_data = json_decode(
-        request(self::$data[$i]['relationships']['field_service_icon']['links']['related']['href'])
+      $parent_data = json_decode(request(
+        self::$data[$i]['relationships']['field_service_icon']['links']['related']['href'])
         ,true);
       foreach ($parent_data['data'] as $service_datum){
 
         // Gets the corresponding icons.
-        $service_image =  json_decode(
-          request($service_datum['relationships']['field_media_image']['links']['related']['href'])
+        $service_image =  json_decode(request(
+          $service_datum['relationships']['field_media_image']['links']['related']['href'])
           ,true);
 
         // Sets the corresponding icons to their parents name.
@@ -70,15 +72,17 @@ class API {
       }
 
       // Gets image data for every parent services.
-      $image_data = json_decode(
-        request(self::$data[$i]['relationships']['field_image']['links']['related']['href'])
+      $image_data = json_decode(request(
+        self::$data[$i]['relationships']['field_image']['links']['related']['href'])
         ,true);
 
       // Sets thumbnail image links to their associative parent services.
-      self::$root[$parent_name]['images'] = self::$domain . $image_data['data']['attributes']['uri']['url'];
+      self::$root[$parent_name]['images'] = self::$domain .
+        $image_data['data']['attributes']['uri']['url'];
 
       // Sets service icon links to their associative parent services.
-      self::$root[$parent_name]['link'] = self::$domain . self::$data[$i]['attributes']['path']['alias'];
+      self::$root[$parent_name]['link'] = self::$domain .
+        self::$data[$i]['attributes']['path']['alias'];
     }
   }
 
@@ -94,10 +98,14 @@ class API {
    */
   static function getServicesWithLinks(ParentServices $parentService):array {
     return match ($parentService) {
-      ParentServices::Drupal => self::$root[ParentServices::Drupal->value]['children'],
-      ParentServices::ECommerce => self::$root[ParentServices::ECommerce->value]['children'],
-      ParentServices::Mobile => self::$root[ParentServices::Mobile->value]['children'],
-      ParentServices::Website => self::$root[ParentServices::Website->value]['children'],
+      ParentServices::Drupal =>
+        self::$root[ParentServices::Drupal->value]['children'],
+      ParentServices::ECommerce =>
+        self::$root[ParentServices::ECommerce->value]['children'],
+      ParentServices::Mobile =>
+        self::$root[ParentServices::Mobile->value]['children'],
+      ParentServices::Website =>
+        self::$root[ParentServices::Website->value]['children'],
     };
   }
 
@@ -112,15 +120,20 @@ class API {
    */
   static function getParentLinks(ParentServices $parentService):string {
     return match ($parentService) {
-      ParentServices::Drupal => self::$root[ParentServices::Drupal->value]['link'],
-      ParentServices::ECommerce => self::$root[ParentServices::ECommerce->value]['link'],
-      ParentServices::Mobile => self::$root[ParentServices::Mobile->value]['link'],
-      ParentServices::Website => self::$root[ParentServices::Website->value]['link'],
+      ParentServices::Drupal =>
+        self::$root[ParentServices::Drupal->value]['link'],
+      ParentServices::ECommerce =>
+        self::$root[ParentServices::ECommerce->value]['link'],
+      ParentServices::Mobile =>
+        self::$root[ParentServices::Mobile->value]['link'],
+      ParentServices::Website =>
+        self::$root[ParentServices::Website->value]['link'],
     };
   }
 
   /**
-   * Takes parent service name as enum value and returns their associative thumbnail images.
+   * Takes parent service name as enum value and returns their associative
+   * thumbnail images.
    *
    * @param ParentServices $parentService
    *   Parent service name as Enum values.
@@ -130,15 +143,20 @@ class API {
    */
   static function getImages(ParentServices $parentService):mixed {
     return match ($parentService) {
-      ParentServices::Drupal => self::$root[ParentServices::Drupal->value]['images'],
-      ParentServices::ECommerce => self::$root[ParentServices::ECommerce->value]['images'],
-      ParentServices::Mobile => self::$root[ParentServices::Mobile->value]['images'],
-      ParentServices::Website => self::$root[ParentServices::Website->value]['images'],
+      ParentServices::Drupal =>
+        self::$root[ParentServices::Drupal->value]['images'],
+      ParentServices::ECommerce =>
+        self::$root[ParentServices::ECommerce->value]['images'],
+      ParentServices::Mobile =>
+        self::$root[ParentServices::Mobile->value]['images'],
+      ParentServices::Website =>
+        self::$root[ParentServices::Website->value]['images'],
     };
   }
 
   /**
-   * Takes parent service name as enum value and returns their associative service icons.
+   * Takes parent service name as enum value and returns their associative
+   * service icons.
    *
    * @param ParentServices $parentService
    *   Parent service name as Enum values.
@@ -148,10 +166,14 @@ class API {
    */
   static function getParentIcons(ParentServices $parentService):array {
     return match ($parentService) {
-      ParentServices::Drupal => self::$root[ParentServices::Drupal->value]['service_icons'],
-      ParentServices::ECommerce => self::$root[ParentServices::ECommerce->value]['service_icons'],
-      ParentServices::Mobile => self::$root[ParentServices::Mobile->value]['service_icons'],
-      ParentServices::Website => self::$root[ParentServices::Website->value]['service_icons'],
+      ParentServices::Drupal =>
+        self::$root[ParentServices::Drupal->value]['service_icons'],
+      ParentServices::ECommerce =>
+        self::$root[ParentServices::ECommerce->value]['service_icons'],
+      ParentServices::Mobile =>
+        self::$root[ParentServices::Mobile->value]['service_icons'],
+      ParentServices::Website =>
+        self::$root[ParentServices::Website->value]['service_icons'],
     };
   }
 
