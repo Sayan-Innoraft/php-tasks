@@ -1,0 +1,10 @@
+.idea
+.vscode
+vendor
+basics/task1-6/creds.php
+basics/task7/innoraft-php.code-workspace
+.DS_Store
+basics/task7/css/*.css.map
+basics/task7/creds.php
+basics/task1-6/uploads
+basics/task1-6/docs
