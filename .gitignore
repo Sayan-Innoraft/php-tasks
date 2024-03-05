@@ -1,0 +1,7 @@
+/vendor/
+.vscode
+.idea
+.DS_Store
+advanced/task1/css/*.map
+advanced/task2/css/*.map
+advanced/task2/creds.php
