@@ -30,6 +30,11 @@ require 'dbconnect.php';
 
       // Gets current table name.
       $tbl_name = mysqli_fetch_assoc($tbl)['Tables_in_employee'];
+      ?>
+      <h2>
+        <?= $tbl_name ?>
+      </h2>
+      <?php
 
       // Gets the table column names.
       $sql = 'show columns from ' . $tbl_name;
@@ -60,7 +65,6 @@ require 'dbconnect.php';
               }
             }
             ?>
-
           </tr>
         </thead>
         <tbody>
@@ -105,9 +109,7 @@ require 'dbconnect.php';
   <script src='//cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js'>
   </script>
   <script src="scripts/script.js">
-
   </script>
-
 </body>
 
 </html>

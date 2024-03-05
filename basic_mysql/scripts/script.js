@@ -1,3 +1,4 @@
-$(document).ready( function () {
+// Beautifies the tables.
+$(document).ready(function () {
   $('.display').DataTable();
-} );
+});

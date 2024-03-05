@@ -1,6 +1,5 @@
 <?php
 
-
 require '../vendor/autoload.php';
 require 'creds.php';
 
@@ -21,4 +20,3 @@ if ($conn->connect_error) {
     . $conn->connect_error);
 }
 echo "Connected successfully";
-
