@@ -2,3 +2,11 @@ input,textarea,span{
     display: block;
     margin: 10px 0;
 }
+.err-msg{
+    color: red;
+}
+#output{
+    height:100px;
+    width:100px;
+    display: none;
+}

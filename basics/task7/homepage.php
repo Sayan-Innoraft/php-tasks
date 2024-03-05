@@ -22,7 +22,8 @@ if (isset($_POST['submit'])) {
   }
 }
 
-// If username and passwords aren't stored in the SESSION variable then redirects to login page.
+// If username and passwords aren't stored in the SESSION variable then
+// redirects to login page.
 if (!isset($_SESSION['username']) || !isset($_SESSION['password'])) {
   header('Location: /');
   exit();
@@ -31,7 +32,8 @@ if (!isset($_SESSION['username']) || !isset($_SESSION['password'])) {
   require 'header.php';
 
   // Gets the query parameter value from  parsing query string.
-  // If the query parameter value is valid then redirects to targeted page else show error.
+  // If the query parameter value is valid then redirects to targeted page
+  // else show error.
   parse_str($_SERVER['QUERY_STRING'], $parameters);
   if (isset($parameters['q'])) {
     if ($parameters['q'] > 0 && $parameters['q'] <= 7) {

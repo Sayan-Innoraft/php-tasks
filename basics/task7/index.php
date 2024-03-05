@@ -8,7 +8,8 @@ if(isset($_SESSION['username']) && isset($_SESSION['password'])){
   exit();
 }
 
-// If the user puts wrong credentials then show a waring message on the login page.
+// If the user puts wrong credentials then show a waring message on the login
+// page.
 $msg = $_SESSION['error'] ?? '';
 unset($_SESSION['error']);
 ?>

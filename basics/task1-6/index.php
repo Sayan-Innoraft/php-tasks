@@ -4,7 +4,8 @@ require 'generate_pdf.php';
 require 'email_validation.php';
 require 'marks_validation.php';
 
-// When submitting the values in the form , the values are stored in the server and generate the pdf file.
+// When submitting the values in the form , the values are stored in the server
+// and generate the pdf file.
 if (isset($_POST['submit'])) {
   $full_name = $_POST['first_name'] . " " . $_POST['last_name'];
   $target_file = 'uploads/' . basename($_FILES['image']['name']);
@@ -23,7 +24,8 @@ if (isset($_POST['submit'])) {
   if($marks_valid && $email_valid){
 
     // Generates the pdf file if marks and email address are valid.
-    generate_pdf($full_name, $email, $_POST['number'], $target_file, $marks_data);
+    generate_pdf($full_name, $email, $_POST['number'],
+     $target_file, $marks_data);
   }
   if(!$marks_valid){
     $marks_err = 'Invalid marks format';
@@ -55,20 +57,20 @@ if (isset($_POST['submit'])) {
     <label for="full_name">Full Name:</label>
     <input disabled id="full_name" name="full_name" readonly type="text" />
     <label for="image">Select Image:</label>
-    <input accept="image/*" id="image" name="image" required type="file" onchange='openFile(event)'/>
-    <img id='output' style="height:100px; width:100px; display: none">
-    <img src="" name="img" alt="No Image" id="img" style='height:150px;display: none'>
+    <input accept="image/*" id="image" name="image" required type="file"
+     onchange='openFile(event)'/>
+    <img id='output' alt="preview" src="">
     <label for="marks">Enter Marks:</label>
     <textarea cols="50" id="marks" name="marks" placeholder="Subject|Mark"
       required rows="4"></textarea>
-    <p name="marks_err" style="color: red;"><?= $marks_err??null ?></p>
+    <p name="marks_err" class="err-msg"><?= $marks_err??null ?></p>
     <label for="number">Enter phone number</label>
     <input id="number" name="number" pattern="\+91[0-9]{10}" required
       title="Indian phone number must begin with +91 and be 10 digits long"
       type="text" />
     <label for="email">Email id: </label>
     <input id="email" name="email" type="text" />
-    <p name="marks_err" style="color: red;"><?= $email_err??null ?></p>
+    <p name="marks_err" class="err-msg"><?= $email_err??null ?></p>
     <input id="submit" name="submit" type="submit" value="Submit" />
   </form>
   <script src="scripts/script.js"></script>

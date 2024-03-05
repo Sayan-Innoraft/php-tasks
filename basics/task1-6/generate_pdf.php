@@ -16,15 +16,19 @@ require 'PDF.php';
  * @param string $marks
  *   User's subject marks.
  */
-function generate_pdf(string $full_name, string $email_address, string $number, mixed $image, string $marks): void {
+function generate_pdf(string $full_name, string $email_address,
+                      string $number, mixed $image, string $marks): void {
     $pdf = new PDF();
     $pdf->AddPage();
     $pdf->SetFont('Arial', 'B', 16);
-    $pdf->Cell(0, 10, "Name : $full_name", 0, 1, 'L');
+    $pdf->Cell(0, 10, "Name : $full_name",
+      0, 1, 'L');
     $pdf->SetFont('Arial', '', 12);
-    $pdf->Cell(0, 10, "Email Address : $email_address", 0, 1, 'L');
+    $pdf->Cell(0, 10, "Email Address : $email_address",
+      0, 1, 'L');
     $pdf->SetFont('Arial', '', 12);
-    $pdf->Cell(0, 10, "Contact Number : $number", 0, 1, 'L');
+    $pdf->Cell(0, 10, "Contact Number : $number",
+      0, 1, 'L');
     $pdf->Cell(0, 20, "", 0, 1, 'L');
     $width = $pdf->GetPageWidth();
     $pdf->Image("$image", $width - 60, 10, 50);
