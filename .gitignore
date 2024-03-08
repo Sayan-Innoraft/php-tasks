@@ -1,0 +1,5 @@
+/vendor/
+.idea
+.vscode
+task7/creds.php
+task7/css/*.map

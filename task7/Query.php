@@ -1,0 +1,117 @@
+<?php
+
+require 'creds.php';
+
+/**
+ * Query class initiates a database connection to mysql database server, adds
+ * new users, resets passwords, checks if the username is already in database
+ * and returns password to a specific username.
+ */
+class Query {
+  private static mixed $conn = null;
+
+  /**
+   * Connects to mysql database. If the connection is succesful, returns true
+   * else returns false.
+   *
+   * @return bool
+   *   If connection is successful , returns true, else returns false.
+   */
+  static function connect(): bool {
+    global $server_host, $db_username, $db_password, $dbname ;
+
+    // Connection.
+    self::$conn = new mysqli(
+      $server_host,
+      $db_username,
+      $db_password,
+      $dbname
+    );
+
+    // For checking if connection is successful or not.
+    return !self::$conn->connect_error;
+  }
+
+  /**
+   * Adds new user to the database. If User gets added successfully,returns
+   * true,else returns false.
+   *
+   * @param string $name
+   *   Username of the new user.
+   * @param string $pass
+   *   Password of the new user.
+   *
+   * @return bool
+   *   Returns true if inserting new user details to the server is
+   *   successful,else returns false.
+   */
+  static function addUser (string $name, string $pass):bool {
+    if($name != null && $pass != null){
+      $sql = 'insert into users values (' . "'$name'" . ',' . "'$pass')";
+      return (bool)mysqli_query(self::$conn, $sql);
+    }
+    return false;
+  }
+
+  /**
+   * Resets password of a user after validating user's old password.Returns
+   * true if operation successful , else returns false.
+   *
+   * @param string $name
+   *   Username of the user.
+   * @param string $oldPass
+   *   Old password of the user.
+   * @param string $newPass
+   *   New Password of the user.
+   *
+   * @return bool
+   *   Returns true if operation successful, else returns false.
+   */
+  static function resetPassword(string $name, string $oldPass, string $newPass):
+    bool {
+    if(self::getUserPassword($name) == $oldPass){
+      $sql = 'UPDATE users SET password = ' . "'$newPass'" . ' WHERE username = '
+        . "'$name'";
+      return (bool)mysqli_query(self::$conn, $sql);
+    }else{
+      return false;
+    }
+  }
+
+  /**
+   * Checks if the username is already exists in the database or not.
+   *
+   * @param $username
+   *   Username of the user.
+   *
+   * @return bool
+   *   Returns true if user already exists in the database, returns false if
+   *   username doesn't exist in database.
+   */
+  static  function checkUser($username):bool {
+    $sql = 'select password from users where username = ' . "'$username'";
+    $res = mysqli_query(self::$conn, $sql);
+    return !mysqli_fetch_assoc($res) == null;
+  }
+
+  /**
+   * Gets password of the user. Returns password as a string. If username
+   * doesn't exist in database, returns false.
+   *
+   * @param $name
+   *   Username of the user.
+   *
+   * @return string|null
+   *   Returns password as string. returns null if username doesn't exist in
+   *   database.
+   */
+  static function getUserPassword($name): ?string {
+    if(self::checkUser($name)){
+      $sql = 'select password from users where username = ' . "'$name'";
+      $res = mysqli_query(self::$conn, $sql);
+      return mysqli_fetch_assoc($res)['password'];
+    }
+    return null;
+  }
+
+}
