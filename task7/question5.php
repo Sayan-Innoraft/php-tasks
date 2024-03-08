@@ -13,12 +13,13 @@ require_once 'homepage.php'
 </head>
 
 <body>
-  <div class="question-box">
-    <p class="question">
-5. Add a new single text field to the above form that will accept email id. Do
-  not use email id input field type.
-    </p>
-  </div>
+<div class="question-box">
+  <p class="question">
+    5. Add a new single text field to the above form that will accept email id.
+    Do
+    not use email id input field type.
+  </p>
+</div>
 
 </body>
 
