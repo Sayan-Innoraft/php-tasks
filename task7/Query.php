@@ -8,10 +8,14 @@ require 'creds.php';
  * and returns password to a specific username.
  */
 class Query {
+
+  /**
+   * Database connection
+   */
   private static mixed $conn = null;
 
   /**
-   * Connects to mysql database. If the connection is succesful, returns true
+   * Connects to mysql database. If the connection is successful, returns true
    * else returns false.
    *
    * @return bool
