@@ -36,8 +36,10 @@ if (isset($_SESSION['username']) && isset($_SESSION['password'])) {
 }
 
 // Show error message if set to error key in SESSION variable.
-$msg = $_SESSION['error'] ?? '';
-unset($_SESSION['error']);
+if(isset($_SESSION['error'] )){
+  $msg = $_SESSION['error'] ;
+  unset($_SESSION['error']);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
