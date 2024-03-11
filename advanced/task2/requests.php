@@ -1,18 +1,20 @@
 <?php
 
+use GuzzleHttp\Client;
+
+require '../../vendor/autoload.php';
+
 /**
- * Executes the url and returns json file.
+ * Executes the url and returns string as  response.
  *
  * @param string $url
  *   URL to call the api.
  *
  * @return string
- *   Returns JSON file as output.
+ *   Returns string as response.
  */
 function request(string $url): string {
-  $ch = curl_init($url);
-  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-  $data = curl_exec($ch);
-  curl_close($ch);
-  return $data;
+  $client = new Client();
+  $response = $client->request('GET', $url);
+  return $response->getBody();
 }

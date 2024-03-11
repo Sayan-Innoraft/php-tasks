@@ -1,5 +1,6 @@
 <?php
 
+require 'top-cache.php';
 require 'API.php';
 
 // Creates object of API class to call api.
@@ -76,7 +77,7 @@ $api = new API();
 
             <!-- Parent service page link embedded parent service name header. -->
             <a href=<?= $web_path ?>>
-              <p class="org">WEBSITE DESIGN &</p>
+              <p class="org">WEBSITE DESIGN &amp;</p>
               <p>DEVELOPMENT</p>
             </a>
             <ul class='icon-list'>
@@ -123,7 +124,7 @@ $api = new API();
             <!-- Parent service page link embedded parent service name header. -->
             <a href=<?= $drupal_path ?>>
               <p class="org">DRUPAL DEVELOPMENT</p>
-              <p>& MAINTENANCE</p>
+              <p>&amp; MAINTENANCE</p>
             </a>
             <ul class='icon-list'>
               <?php
@@ -274,3 +275,7 @@ $api = new API();
 </body>
 
 </html>
+<?php
+require 'bottom-cache.php';
+?>
+
