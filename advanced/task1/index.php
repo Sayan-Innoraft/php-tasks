@@ -6,7 +6,6 @@ require 'API.php';
 // Creates object of API class to call api.
 $api = new API();
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -276,6 +275,7 @@ $api = new API();
 
 </html>
 <?php
-require 'bottom-cache.php';
-?>
 
+require 'bottom-cache.php';
+
+?>
