@@ -1,0 +1,83 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  width: 100vw;
+  background: linear-gradient(to top left, #3ed8ff, #a8f5ff);
+}
+body header {
+  width: 1080px;
+  margin: auto;
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-between;
+}
+body header .user {
+  display: flex;
+  justify-content: space-between;
+}
+body header .user p {
+  font-size: 20px;
+  margin: 0 5px;
+  color: gray;
+}
+body header .user a {
+  margin: 0 5px;
+  font-size: 18px;
+  text-decoration: none;
+  color: blue;
+}
+body .posts {
+  width: 1000px;
+  margin: auto;
+  margin-top: 40px;
+}
+body .posts .post {
+  border-radius: 15px;
+  margin: 10px auto;
+  width: 700px;
+  background-color: #3ed8ff;
+  padding: 20px;
+}
+body .posts .post .top {
+  display: flex;
+  height: 40px;
+  align-items: center;
+}
+body .posts .post .top img {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  background-color: gray;
+}
+body .posts .post .top .username {
+  margin: 0 8px;
+  align-items: center;
+}
+body .posts .post .post-text {
+  margin: 10px;
+}
+body .posts .post .post-img {
+  margin: auto;
+  text-align: center;
+  overflow: hidden;
+  width: 660px;
+  height: 380px;
+  -o-object-position: center;
+     object-position: center;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 10px;
+  border: 0.5px solid black;
+}
+body .posts .post .post-img img {
+  border-radius: 10px;
+  width: 100%;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}/*# sourceMappingURL=welcome.css.map */
