@@ -4,20 +4,28 @@ require '../model/Query.php';
 
 if(isset($_POST['submit'])){
 
+  if(preg_match('/^[A-Za-z]{1,28}$/',trim($_POST['first_name'])) &&
+    preg_match('/^[A-Za-z]{1,28}$/',trim($_POST['last_name'])) &&
+    preg_match('/^[A-Za-z0-9._#$@!&%*]{1,28}$/',trim($_POST['password2']))
+    && preg_match('/^[A-Za-z0-9._]{1,28}$/',trim($_POST['username']))){
+    if(Query::connect() && Query::checkUser(trim($_POST['username']))){
+      $msg = 'Username already exists';
+    }else{
+
+      // After successfully adding the user, redirects to the login page.
+      if(Query::addUser(trim($_POST['username']),trim($_POST['first_name']),
+        trim($_POST['last_name']),trim($_POST['password2']))){
+        header('Location: /login');
+        exit();
+      }
+    }
+  }else{
+    $msg = 'Invalid input format';
+  }
   // Checks if the connection to database is successful and the input
   // username already exists in the database or not. If username already
   // exists in the database, show warning message.
-  if( Query::connect() && Query::checkUser(trim($_POST['username']))){
-    $msg = 'Username already exists';
-  }else{
 
-    // After successfully adding the user, redirects to the login page.
-    if(Query::addUser(trim($_POST['username']),trim($_POST['first_name']),
-      trim($_POST['last_name']),trim($_POST['password2']))){
-      header('Location: /');
-      exit();
-    }
-  }
 }
 ?>
 <!DOCTYPE html>
@@ -41,29 +49,31 @@ if(isset($_POST['submit'])){
         <p>
           <label for="username">Username</label>
           <input type="text" name="username" id="username"
-                 pattern="^[\w](?!.*?\.{2})[\w.]{1,28}[\w]$*"
+                 pattern="^[A-Za-z0-9._]{1,28}$"
                  placeholder="Username" required>
         </p>
         <p>
-          <label for="first_name">Username</label>
+          <label for="first_name">First Name</label>
           <input type="text" name="first_name" id="first_name"
-                 pattern="^[\w](?!.*?\.{2})[\w.]{1,28}[\w]$*"
+                 pattern="^[A-Za-z0-9._]{1,28}$"
                  placeholder="First Name" required>
         </p>
         <p>
-          <label for="last_name">Username</label>
+          <label for="last_name">Last Name</label>
           <input type="text" name="last_name" id="last_name"
-                 pattern="^[\w](?!.*?\.{2})[\w.]{1,28}[\w]$*"
+                 pattern="^[A-Za-z0-9._]{1,28}$"
                  placeholder="Last Name" required>
         </p>
         <p>
           <label for="password1">Enter Password</label>
           <input type="password" id="password1" minlength="1" name="password1"
+                 pattern="^[A-Za-z0-9._#$@!&%*]{1,28}$"
                  placeholder="Enter Password" required>
         </p>
         <p>
           <label for="password2">Re-enter Password</label>
           <input type="password" id="password2" name="password2"
+                 pattern="^[A-Za-z0-9._#$@!&%*]{1,28}$"
                  placeholder="Re-enter Password" required>
         </p>
         <span id="message"></span>
@@ -77,7 +87,7 @@ if(isset($_POST['submit'])){
       <?=$msg??'' ?>
     </p>
     <hr>
-    <p class="opts">Already an user? <a id="reset" href="login.php"> Log
+    <p class="opts">Already an user? <a id="reset" href="/login"> Log
         in</a></p>
   </div>
   <div class="circle c1"></div>

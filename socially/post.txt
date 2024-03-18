@@ -1,40 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <link rel="stylesheet" href="css/welcome.css">
-</head>
-
-<!-- Welcomes user after authenticating. -->
-<!--  the username and password successfully. -->
-
-<body>
-  <header>
-    <h2>Socially</h2>
-    <div class='user'>
-      <p class="name">Hello
-        <?= $_SESSION['username'] ?>
-      </p>
-      <!-- Logs out user, removes values form the session variable and destroys
-      the session.  -->
-      <a class="logout" href='logout.php'>Logout</a>
-    </div>
-  </header>
-  <div class="posts">
-    <div class="post">
-      <div class="top">
-        <img src="image.jpeg" alt="">
-        <p class='username'>Sayan Manna</p>
-      </div>
-      <p class="post-text">Hey there!! WhatsApp is using me!!</p>
-      <div class="post-img">
-        <img
-          src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimages3.alphacoders.com%2F233%2F233959.jpg&f=1&nofb=1&ipt=fded539b26ab1f64c9c7a367c371cee024b397daa356356d54b2ad26834c8705&ipo=images"
-          alt="">
+<div class="post">
+        <div class="top">
+          <img src="profile_photos/sayan0306.jpeg" alt="">
+          <a href="profile.php?p=<?=$_SESSION['username']?>" class='username'>Sayan Manna</a>
+        </div>
+        <p class="post-text">Hey there!! WhatsApp is using me!!</p>
+        <div class="post-img">
+          <img
+            src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimages3.alphacoders.com%2F233%2F233959.jpg&f=1&nofb=1&ipt=fded539b26ab1f64c9c7a367c371cee024b397daa356356d54b2ad26834c8705&ipo=images"
+            alt="">
+        </div>
       </div>
     </div>
-    <div class="post">
+<div class="post">
       <div class="top">
         <img src="image.jpeg" alt="">
         <p class='username'>Sayan Manna</p>
@@ -94,17 +71,3 @@
           alt="">
       </div>
     </div>
-    <div class="post"></div>
-    <div class="post"></div>
-    <div class="post"></div>
-    <div class="post"></div>
-    <div class="post"></div>
-    <div class="post"></div>
-    <div class="post"></div>
-    <div class="post"></div>
-    <div class="post"></div>
-  </div>
-
-</body>
-
-</html>

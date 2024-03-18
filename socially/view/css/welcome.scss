@@ -10,17 +10,32 @@ body {
   background: linear-gradient(to top left, #3ed8ff, #a8f5ff);
 
   header {
-    width: 1080px;
+    width: 100%;
     margin: auto;
-    margin-top: 15px;
+    position: fixed;
+    z-index: 2;
+    background-color: #87c1e8;
+    top: 0;
+    align-items: flex-start;
     display: flex;
     justify-content: space-between;
+    padding: 10px 200px;
+
+    h2 {
+      a {
+        text-decoration: none;
+        color: black;
+      }
+    }
+
 
     .user {
       display: flex;
       justify-content: space-between;
 
-      p {
+
+      p,
+      .name {
         font-size: 20px;
         margin: 0 5px;
         color: gray;
@@ -35,23 +50,80 @@ body {
     }
   }
 
+  .add-post-container {
+    margin-top: 80px;
+
+    .add-post {
+      margin: auto;
+      display: flex;
+      height: 50px;
+      width: 700px;
+
+      input {
+        display: inline-block;
+      }
+
+      #post_text {
+        width: 500px;
+        padding: 0 8px;
+        font-size: 16px;
+        color: #3b0fff;
+        border-top-left-radius: 20px;
+        border-bottom-left-radius: 20px;
+        border: 1px solid rgb(0, 119, 255);
+      }
+
+      #img_upload {
+        display: inline-block;
+        border: 1px solid rgb(0, 119, 255);
+        padding: 10px;
+        border-top-right-radius: 20px;
+        border-bottom-right-radius: 20px;
+        background-color: #f9f9f9;
+        color: #333;
+        cursor: pointer;
+
+        img {
+          height: 30px;
+        }
+
+        &hover {
+          border-color: #999;
+        }
+      }
+
+      #image {
+        display: none;
+      }
+
+      #btn {
+        margin-left: 50px;
+        width: 80px;
+        border-radius: 20px;
+        border: 1px solid rgb(0, 119, 255);
+        cursor: pointer;
+      }
+    }
+  }
+
   .posts {
+    top: 100px;
     width: 1000px;
     margin: auto;
-    margin-top: 40px;
 
     .post {
       border-radius: 15px;
-      margin: 10px auto;
+      margin: 15px auto;
       width: 700px;
-      // height: 500px;
       background-color: #3ed8ff;
       padding: 20px;
+      box-shadow: 1px 1px 5px rgba($color: black, $alpha: 0.5);
 
       .top {
         display: flex;
         height: 40px;
         align-items: center;
+        position: relative;
 
         img {
           height: 40px;
@@ -62,7 +134,16 @@ body {
 
         .username {
           margin: 0 8px;
+          font-size: 18px;
           align-items: center;
+          text-decoration: none;
+          color: rgb(84, 84, 84);
+        }
+
+        .post_time {
+          position: absolute;
+          right: 0;
+          color: #555555;
         }
       }
 
@@ -76,19 +157,17 @@ body {
         text-align: center;
         overflow: hidden;
         width: 660px;
-        height: 380px;
+        height: 700px;
         object-position: center;
         object-fit: cover;
         border-radius: 10px;
         border: 0.5px solid black;
 
         img {
-          border-radius: 10px;
-          // border: 0.5px solid black;
-          width: 100%;
+          height: 100%;
           position: relative;
-          top: 50%;
-          transform: translateY(-50%);
+          left: 50%;
+          transform: translateX(-50%);
         }
       }
     }

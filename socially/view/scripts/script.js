@@ -2,7 +2,7 @@
 // If both passwords match, shows green matching text, else shows red Not
 // Matching text.
 $('form').validate();
-$('#password1, #password2').on('keyup', function() {
+$('#password1, #password2').on('keyup', function () {
   if ($('#password1').val() === $('#password2').val()) {
     $('#message').html('Matching').css('color', 'green');
     $('#submit').prop('disabled', false);
@@ -11,3 +11,18 @@ $('#password1, #password2').on('keyup', function() {
     $('#submit').prop('disabled', true);
   }
 });
+
+/**
+ * Displays the user input image file on webpage.
+ */
+// var openFile = function (file) {
+//   var input = file.target;
+//   var reader = new FileReader();
+//   reader.onload = function () {
+//     var dataURL = reader.result;
+//     var output = document.getElementById('output');
+//     output.style.display = 'block';
+//     output.src = dataURL;
+//   };
+//   reader.readAsDataURL(input.files[0]);
+// };

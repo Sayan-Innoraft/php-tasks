@@ -8,19 +8,25 @@ if (isset($_POST['submit'])) {
   // If the connection to the database server is successful and username
   // exists in the database, and password to the user gets validated
   // successfully, then set username and password key to SESSION variable.
-  if (Query::connect() && Query::checkUser(trim($_POST['username']))) {
-    if (trim($_POST['password']) == Query::getUserPassword(trim($_POST['username']))) {
+  if (preg_match('/^[A-Za-z0-9._]{1,28}$/',trim($_POST['username']))
+    && Query::connect()) {
+    if(Query::checkUser(trim($_POST['username']))) {
+      if (trim($_POST['password']) == Query::getUserPassword(trim($_POST['username']))) {
 
-      // Storing the username and password in the super-global variable
-      // SESSION.
-      $_SESSION['username'] = trim($_POST['username']);
-      $_SESSION['password'] = trim($_POST['password']);
-    } else {
+        // Storing the username and password in the super-global variable
+        // SESSION.
+        $_SESSION['username'] = trim($_POST['username']);
+        $_SESSION['password'] = trim($_POST['password']);
+      } else {
 
-      // If the user puts wrong credentials then show a waring message on
-      // the login page.
-      $msg = 'Wrong Password';
+        // If the user puts wrong credentials then show a waring message on
+        // the login page.
+        $msg = 'Wrong Password';
+      }
+    }else{
+      $msg = 'Username doesn\'t exist';
     }
+
   } else {
 
     // If the username doesn't exist in the database, show warning of
@@ -62,12 +68,13 @@ if(isset($_SESSION['error'] )){
         <p>
           <label for="username">Username</label>
           <input type="text" name="username" id="username"
-                 pattern="^[\w](?!.*?\.{2})[\w.]{1,28}[\w]$*"
+                 pattern="^[A-Za-z0-9._#$@!&%*]{1,28}$"
                  placeholder="Username" required>
         </p>
         <p>
           <label for="password">Password</label>
           <input type="password" id="password" name="password"
+                 pattern="^[A-Za-z0-9._#$@!&%*]{1,28}$"
                  placeholder="Password" required>
         </p>
         <p>

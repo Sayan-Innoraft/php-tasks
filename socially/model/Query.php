@@ -10,7 +10,7 @@ require 'creds.php';
 class Query {
 
   /**
-   * Database connection
+   * Database connection.
    */
   private static mixed $conn = null;
 
@@ -21,7 +21,7 @@ class Query {
    * @return bool
    *   If connection is successful , returns true, else returns false.
    */
-  static function connect():bool {
+  static function connect(): bool {
     global $server_host, $db_username, $db_password, $dbname;
 
     // Connection.
@@ -54,12 +54,10 @@ class Query {
    *   successful,else returns false.
    */
   static function addUser(string $username, string $first_name,
-                          string $last_name, string $password): bool {
+                          string $last_name, string $password):bool {
     if ($username != null && $password != null) {
-      $sql1 = 'insert into users values ( ' . "'$username'," . "'$first_name',"
-        . "'$last_name')";
-      $sql2 = 'insert into user_password values ( ' . "'$username',"
-        . "'$password')";
+      $sql1 = "INSERT INTO users VALUE ('$username', '$first_name','$last_name')";
+      $sql2 = "INSERT INTO user_password VALUE ( '$username','$password')";
       return mysqli_query(self::$conn, $sql1) && mysqli_query(self::$conn,
           $sql2);
     }
@@ -83,10 +81,10 @@ class Query {
   static function resetPassword(string $name, string $oldPass, string $newPass)
   :bool {
     if (self::getUserPassword($name) == $oldPass) {
-      $sql = 'UPDATE user_password SET password = ' . "'$newPass'"
-        . ' WHERE username =' . " '$name'";
+      $sql = "UPDATE user_password SET password = '$newPass' WHERE username = '$name'";
       return (bool)mysqli_query(self::$conn, $sql);
-    } else {
+    }
+    else {
       return false;
     }
   }
@@ -95,16 +93,16 @@ class Query {
    * Gets password of the user. Returns password as a string. If username
    * doesn't exist in database, returns false.
    *
-   * @param $name
+   * @param string $name
    *   Username of the user.
    *
    * @return string|null
    *   Returns password as string. returns null if username doesn't exist in
    *   database.
    */
-  static function getUserPassword($name): ?string {
+  static function getUserPassword(string $name):?string {
     if (self::checkUser($name)) {
-      $sql = 'select password from user_password where username = ' . "'$name'";
+      $sql = "SELECT password FROM user_password WHERE username = '$name'";
       $res = mysqli_query(self::$conn, $sql);
       return mysqli_fetch_assoc($res)['password'];
     }
@@ -114,17 +112,64 @@ class Query {
   /**
    * Checks if the username is already exists in the database or not.
    *
-   * @param $username
+   * @param string $username
    *   Username of the user.
    *
    * @return bool
    *   Returns true if user already exists in the database, returns false if
    *   username doesn't exist in database.
    */
-  static function checkUser($username):bool {
-    $sql = 'select username from users where username = ' . "'$username'";
+  static function checkUser(string $username):bool {
+    $sql = "SELECT username FROM users WHERE username = '$username'";
     $res = mysqli_query(self::$conn, $sql);
     return !mysqli_fetch_assoc($res) == null;
+  }
+
+  /**
+   * @param string $username
+   * @param string|null $postText
+   * @param string|null $image
+   * @return bool
+   */
+  static function addPost(string $username, ?string $postText, ?string
+  $image):bool {
+      $sql = "INSERT INTO posts(username, text, image) VALUE ('$username',
+                                                '$postText', '$image')";
+      return mysqli_query(self::$conn, $sql);
+
+  }
+
+  /**
+   * @return mysqli_result|bool
+   */
+  static function showPost(): mysqli_result|bool {
+    $sql = 'SELECT * FROM posts order by id desc';
+     return mysqli_query(self::$conn, $sql);
+  }
+
+  /**
+   * @param string $username
+   * @return false|array|null
+   */
+  static function getProfile(string $username): false|array|null {
+    $sql = "SELECT * FROM users where username = '$username'";
+    $res = mysqli_query(self::$conn,$sql);
+    return mysqli_fetch_assoc($res);
+  }
+
+  /**
+   * @param string $username
+   * @param string|null $firstName
+   * @param string|null $lastName
+   * @param string|null $email
+   * @param string|null $bio
+   * @param string|null $image
+   * @return bool
+   */
+  static function uprateProfile(string $username, ?string $firstName, ?string
+  $lastName, ?string $email, ?string $bio, ?string $image):bool {
+    $sql = "UPDATE users SET first_name = '$firstName', last_name = '$lastName', profile_photo = '$image', email = '$email', bio = '$bio' WHERE username = '$username'";
+    return mysqli_query(self::$conn,$sql);
   }
 
 }
