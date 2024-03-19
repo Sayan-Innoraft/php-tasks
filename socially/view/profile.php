@@ -6,7 +6,7 @@ session_start();
 parse_str($_SERVER['QUERY_STRING'], $parameters);
 
 $username = $parameters['p'];
-;
+
 if (Query::connect() && $profile = Query::getProfile($username)) {
   ?>
   <!DOCTYPE html>
@@ -67,7 +67,7 @@ if (Query::connect() && $profile = Query::getProfile($username)) {
                 <input type="email" name="email" id="email"
                   value="<?=$profile['email'] ?>" placeholder="Email id" required>
               </p>
-              <p>Select Profile photo</p>
+              <p>Select a Profile photo</p>
               <label for='image' id='img_upload'><img id="input_img"
                   src='picture.svg'></label>
               <input accept="image/*" id="image" name="image" type="file" />
@@ -101,7 +101,13 @@ if (Query::connect() && $profile = Query::getProfile($username)) {
         } else {
           ?>
         <div class="profile-header">
-          <img name="pfp" src=<?= $profile['profile_photo'] ?? 'profile_photos/user.png' ?>>
+          <img name="pfp" src=<?php
+          if(file_exists("profile_photos/{$profile['username']}.jpeg")){
+            echo "profile_photos/{$profile['username']}.jpeg";
+          }else{
+            echo 'profile_photos/user.png';
+          }
+          ?>>
           <h1>
             <?= $username ?>
           </h1>

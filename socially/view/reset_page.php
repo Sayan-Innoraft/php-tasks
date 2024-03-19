@@ -4,13 +4,16 @@ require '../model/Query.php';
 
 if(isset($_POST['submit'])){
 
-  // Checks if the connection to database is successful and the username
+  // Checks if the connection to the database is successful and the username
   // exists in the database.
   if(preg_match('/^[A-Za-z0-9._]{1,28}$/',trim($_POST['username']))){
     if(Query::connect() && Query::checkUser(trim($_POST['username']))){
 
+      if(Query::getUserPassword(trim($_POST['username'])) ===$_POST['new_password']){
+        $msg = 'Same password';
+      }
       // If old password to the username doesn't match, show warning.
-      if(!Query::resetPassword(trim($_POST['username']),trim($_POST['old_password']),
+      elseif(!Query::resetPassword(trim($_POST['username']),trim($_POST['old_password']),
         trim($_POST['new_password']))){
         $msg = 'Wrong old password';
       }else{

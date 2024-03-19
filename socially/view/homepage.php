@@ -16,17 +16,17 @@ if (!isset ($_SESSION['username']) || !isset ($_SESSION['password'])) {
 } elseif (Query::connect()) {
   if (isset ($_POST['submit'])) {
     $target_file = 'uploads/' . $_SESSION['username'] . '_' . basename
-    ($_FILES['image']['name']);
-    $tmp = $_FILES['image']['tmp_name'];
+    ($_FILES['post']['name']);
+    $tmp = $_FILES['post']['tmp_name'];
     $post_text = htmlentities($_POST['post_text']);
     move_uploaded_file($tmp, $target_file);
-    $image = $target_file;
+    $post = $target_file;
     if ($post_text != null && $tmp != null) {
-      Query::addPost($_SESSION['username'], $post_text, $image);
+      Query::addPost($_SESSION['username'], $post_text, $post);
     } elseif ($post_text != null && $tmp == null) {
       Query::addPost($_SESSION['username'], $post_text, null);
     } elseif ($post_text == null && $tmp != null) {
-      Query::addPost($_SESSION['username'], null, $image);
+      Query::addPost($_SESSION['username'], null, $post);
     }
     unset($_POST);
   }
@@ -36,8 +36,8 @@ if (!isset ($_SESSION['username']) || !isset ($_SESSION['password'])) {
 
   <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="css/welcome.css">
     <title>Socially</title>
+    <link rel="stylesheet" href="css/welcome.css">
   </head>
 
   <!-- Welcomes user after authenticating. -->
@@ -46,14 +46,31 @@ if (!isset ($_SESSION['username']) || !isset ($_SESSION['password'])) {
   <body>
     <header>
       <h2><a href="/home">Socially</a></h2>
+
+      <form id="search" action="" method="post">
+        <label>
+          <input type="text" name="search_username" id="search_bar"
+            placeholder="Username" required>
+        </label>
+        <input type="submit" id="search_button" value="Search" name="search">
+      </form>
+
+      <?php
+
+      if (isset ($_POST['search'])) {
+        header('Location:/profile.php?p=' . trim($_POST['search_username']));
+        exit;
+      }
+      ?>
+
       <div class='user'>
         <p>Hello
-          <a class="name" href="profile.php?p=<?=$_SESSION['username']?>"
-          ><?= $_SESSION['username'] ?>
+          <a class="name" href="profile.php?p=<?= $_SESSION['username'] ?>">
+            <?= $_SESSION['username'] ?>
           </a>
         </p>
         <!-- Logs out user, removes values form the session variable and destroys
-      the session.  -->
+    the session.  -->
         <a class="logout" href='/logout'>Logout</a>
       </div>
     </header>
@@ -63,56 +80,53 @@ if (!isset ($_SESSION['username']) || !isset ($_SESSION['password'])) {
         <label for="post_text"></label>
         <input id="post_text" type="text" name="post_text"
           placeholder="type something nice...">
-        <label for='image' id='img_upload'><img id="input_img"
-                                                src='picture.svg'></label>
-        <input accept="image/*" id="image" name="image" type="file" />
-        <input id="btn" name="submit" type="submit" value="Post"
-         >
+        <label for='post' id='img_upload'><img id="input_img"
+            src='attachment.png'></label>
+        <input accept="image/*, audio/*, video/*" id="post" name="post"
+          type="file" />
+        <input id="btn" name="submit" type="submit" value="Post">
       </form>
     </div>
-    <div class="posts">
+    <div id="posts" class="posts">
       <?php
-      $post = null;
-      $all_posts = Query::showPost();
-      while ($post = mysqli_fetch_assoc($all_posts)) {
-        $user = $post['username'];
-        $text = $post['text'];
-        $img = $post['image'];
-        $post_time = $post['post_time'];
-        ?>
-          <div class="post">
-            <div style="position: relative" class="top">
-              <img src=<?php
-              if(file_exists("profile_photos/$user.jpeg")){
-                echo "profile_photos/$user.jpeg";
-              }else{
-                echo 'profile_photos/user.png';
-              }
-              ?>
-              >
-              <a href="profile.php?p=<?=$user?>" class='username'>
-                <?= $user ?>
-              </a>
-              <p class="post_time"><?=$post_time?></p>
-            </div>
-            <p class="post-text">
-              <?= $text ?>
-            </p>
-            <?php
-              if ($img !== '' && $img !== null) {
-            ?>
-            <div class="post-img">
-              <img src=<?= $img ?>>
-            </div>
-            <?php
-              }
-            ?>
-          </div>
-          <?php
-      }
-      ?>
-    <script src="scripts/script.js"></script>
 
+      require '../controller/load_posts.php';
+
+      ?>
+    </div>
+    <input type="button" id='load_more' value="Load More">
+    <input type="hidden" id="start" value=0>
+    <script
+      src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js">
+      </script>
+      <script>
+        $(document).ready(
+  function () {
+    $('#load_more').click(function () {
+      $start = parseInt($('#start').val());
+      $start = $start + 5;
+      $('#start').val($start);
+      $.ajax({
+        url: 'data.php',
+        method: 'POST',
+        data: { 'starting': $start },
+        success: function (response) {
+          if (response !== '') {
+            $('#posts').append(response);
+          } else {
+            $('#load_more').val('No More Posts').prop("disabled", true);
+          }
+        },
+        error: function () {
+          alert('There was some error performing the AJAX call!');
+        }
+      });
+    });
+  }
+)
+
+      </script>
+    <script src="scripts/script.js"></script>
   </body>
 
   </html>
@@ -123,3 +137,4 @@ if (!isset ($_SESSION['username']) || !isset ($_SESSION['password'])) {
   echo 'Error connecting to database';
 }
 ?>
+

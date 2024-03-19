@@ -37,7 +37,7 @@ class Query {
   }
 
   /**
-   * Adds new user to the database. If User gets added successfully,returns
+   * Adds new user to the database. If a User gets added successfully, returns
    * true,else returns false.
    *
    * @param string $username
@@ -51,12 +51,12 @@ class Query {
    *
    * @return bool
    *   Returns true if inserting new user details to the server is
-   *   successful,else returns false.
+   *   successful, else returns false.
    */
   static function addUser(string $username, string $first_name,
                           string $last_name, string $password):bool {
     if ($username != null && $password != null) {
-      $sql1 = "INSERT INTO users VALUE ('$username', '$first_name','$last_name')";
+      $sql1 = "INSERT INTO users(username, first_name, last_name) VALUE ('$username', '$first_name','$last_name')";
       $sql2 = "INSERT INTO user_password VALUE ( '$username','$password')";
       return mysqli_query(self::$conn, $sql1) && mysqli_query(self::$conn,
           $sql2);
@@ -66,7 +66,7 @@ class Query {
 
   /**
    * Resets password of a user after validating user's old password.Returns
-   * true if operation successful , else returns false.
+   * true if operation successful, else returns false.
    *
    * @param string $name
    *   Username of the user.
@@ -90,15 +90,15 @@ class Query {
   }
 
   /**
-   * Gets password of the user. Returns password as a string. If username
-   * doesn't exist in database, returns false.
+   * Gets password of the user. Returns password as a string. If a username
+   * doesn't exist in the database, returns false.
    *
    * @param string $name
    *   Username of the user.
    *
    * @return string|null
    *   Returns password as string. returns null if username doesn't exist in
-   *   database.
+   *   the database.
    */
   static function getUserPassword(string $name):?string {
     if (self::checkUser($name)) {
@@ -110,14 +110,14 @@ class Query {
   }
 
   /**
-   * Checks if the username is already exists in the database or not.
+   * Checks if the username already exists in the database or not.
    *
    * @param string $username
    *   Username of the user.
    *
    * @return bool
    *   Returns true if user already exists in the database, returns false if
-   *   username doesn't exist in database.
+   *   username doesn't exist in a database.
    */
   static function checkUser(string $username):bool {
     $sql = "SELECT username FROM users WHERE username = '$username'";
@@ -128,13 +128,13 @@ class Query {
   /**
    * @param string $username
    * @param string|null $postText
-   * @param string|null $image
+   * @param string|null $post
    * @return bool
    */
   static function addPost(string $username, ?string $postText, ?string
-  $image):bool {
-      $sql = "INSERT INTO posts(username, text, image) VALUE ('$username',
-                                                '$postText', '$image')";
+  $post):bool {
+      $sql = "INSERT INTO posts(username, text, post) VALUE ('$username',
+                                                '$postText', '$post')";
       return mysqli_query(self::$conn, $sql);
 
   }
@@ -142,8 +142,8 @@ class Query {
   /**
    * @return mysqli_result|bool
    */
-  static function showPost(): mysqli_result|bool {
-    $sql = 'SELECT * FROM posts order by id desc';
+  static function showPost(int $start, int $end): mysqli_result|bool {
+    $sql = 'SELECT * FROM posts order by id desc limit ' . $start . ',' . $end;
      return mysqli_query(self::$conn, $sql);
   }
 

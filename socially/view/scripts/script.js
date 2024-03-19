@@ -11,18 +11,3 @@ $('#password1, #password2').on('keyup', function () {
     $('#submit').prop('disabled', true);
   }
 });
-
-/**
- * Displays the user input image file on webpage.
- */
-// var openFile = function (file) {
-//   var input = file.target;
-//   var reader = new FileReader();
-//   reader.onload = function () {
-//     var dataURL = reader.result;
-//     var output = document.getElementById('output');
-//     output.style.display = 'block';
-//     output.src = dataURL;
-//   };
-//   reader.readAsDataURL(input.files[0]);
-// };

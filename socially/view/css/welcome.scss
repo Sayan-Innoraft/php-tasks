@@ -7,7 +7,7 @@
 body {
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   width: 100vw;
-  background: linear-gradient(to top left, #3ed8ff, #a8f5ff);
+  background-color: #a9eeff;
 
   header {
     width: 100%;
@@ -46,6 +46,24 @@ body {
         font-size: 18px;
         text-decoration: none;
         color: blue;
+      }
+    }
+
+    #search {
+      #search_bar {
+        width: 250px;
+        height: 40px;
+        padding: 0 5px;
+        border: 1px solid black;
+        border-radius: 8px;
+      }
+
+      #search_button {
+        cursor: pointer;
+        height: 40px;
+        width: 80px;
+        border: 1px solid black;
+        border-radius: 8px;
       }
     }
   }
@@ -92,7 +110,7 @@ body {
         }
       }
 
-      #image {
+      #post {
         display: none;
       }
 
@@ -170,6 +188,27 @@ body {
           transform: translateX(-50%);
         }
       }
+
+      .post-audio {
+        audio {
+          position: relative;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 500px;
+        }
+      }
     }
+  }
+
+  #load_more {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 50px;
+    border-radius: 8px;
+    border: 1px solid black;
+    cursor: pointer;
+    margin: 20px 0 50px;
   }
 }

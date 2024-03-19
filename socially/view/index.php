@@ -27,11 +27,11 @@ switch ($request) {
     require __DIR__ . "/profile.php";
     break;
 }
-if (str_starts_with($request, "/profile_photos/")) {
+if (str_starts_with($request, '/profile_photos')) {
   header('Location:/home');
   exit();
 }
-if (str_starts_with($request, "/uploads/")) {
+if (str_starts_with($request, '/uploads')) {
   header('Location:/home');
   exit();
 }

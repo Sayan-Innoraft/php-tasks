@@ -19,7 +19,7 @@ if (isset($_POST['submit'])) {
         $_SESSION['password'] = trim($_POST['password']);
       } else {
 
-        // If the user puts wrong credentials then show a waring message on
+        // If the user puts wrong credentials, then show a waring message on
         // the login page.
         $msg = 'Wrong Password';
       }
@@ -35,13 +35,13 @@ if (isset($_POST['submit'])) {
   }
 }
 
-// If the user is already logged in then redirects to homepage.
+// If the user is already logged in, then redirects to homepage.
 if (isset($_SESSION['username']) && isset($_SESSION['password'])) {
   header('Location: /home');
   exit();
 }
 
-// Show error message if set to error key in SESSION variable.
+// Show an error message if set to error key in SESSION variable.
 if(isset($_SESSION['error'] )){
   $msg = $_SESSION['error'] ;
   unset($_SESSION['error']);
@@ -83,11 +83,11 @@ if(isset($_SESSION['error'] )){
       </form>
     </main>
     <p class="error">
-      <?= $msg ?? '' ?>
+      <?=$msg ?? '' ?>
     </p>
     <hr>
     <p class="opts"><a id="reset" href="/reset">Reset password</a></p>
-    <p class="opts">Not an user? <a href="/register"> Register now</a></p>
+    <p class="opts">Not a user? <a href="/register"> Register now</a></p>
   </div>
   <div class="circle c1"></div>
   <div class="circle c2"></div>

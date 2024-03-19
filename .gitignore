@@ -3,3 +3,6 @@
 .idea
 socially/view/css/*.map
 socially/post.txt
+socially/view/uploads/*
+socially/view/profile_photos/*
+socially/model/creds.php

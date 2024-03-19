@@ -7,7 +7,7 @@
 body {
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   width: 100vw;
-  background: linear-gradient(to top left, #3ed8ff, #a8f5ff);
+  background-color: #a9eeff;
 }
 body header {
   width: 100%;
@@ -40,6 +40,20 @@ body header .user a {
   font-size: 18px;
   text-decoration: none;
   color: blue;
+}
+body header #search #search_bar {
+  width: 250px;
+  height: 40px;
+  padding: 0 5px;
+  border: 1px solid black;
+  border-radius: 8px;
+}
+body header #search #search_button {
+  cursor: pointer;
+  height: 40px;
+  width: 80px;
+  border: 1px solid black;
+  border-radius: 8px;
 }
 body .add-post-container {
   margin-top: 80px;
@@ -78,7 +92,7 @@ body .add-post-container .add-post #img_upload img {
 body .add-post-container .add-post #img_uploadhover {
   border-color: #999;
 }
-body .add-post-container .add-post #image {
+body .add-post-container .add-post #post {
   display: none;
 }
 body .add-post-container .add-post #btn {
@@ -146,4 +160,21 @@ body .posts .post .post-img img {
   position: relative;
   left: 50%;
   transform: translateX(-50%);
+}
+body .posts .post .post-audio audio {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 500px;
+}
+body #load_more {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 50px;
+  border-radius: 8px;
+  border: 1px solid black;
+  cursor: pointer;
+  margin: 20px 0 50px;
 }/*# sourceMappingURL=welcome.css.map */

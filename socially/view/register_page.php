@@ -1,14 +1,16 @@
 <?php
 
 require '../model/Query.php';
+require '../controller/password_validation.php';
 
 if(isset($_POST['submit'])){
-
-  if(preg_match('/^[A-Za-z]{1,28}$/',trim($_POST['first_name'])) &&
-    preg_match('/^[A-Za-z]{1,28}$/',trim($_POST['last_name'])) &&
-    preg_match('/^[A-Za-z0-9._#$@!&%*]{1,28}$/',trim($_POST['password2']))
+  if(is_password_valid($_POST['password1'],$_POST['password2']) !== 'SUCCESS'){
+    $msg = is_password_valid($_POST['password1'],$_POST['password2']);
+  }elseif(preg_match('/^[A-Za-z]{1,28}$/',trim($_POST['first_name'])) &&
+    preg_match('/^[A-Za-z]{1,28}$/',trim($_POST['last_name']))
     && preg_match('/^[A-Za-z0-9._]{1,28}$/',trim($_POST['username']))){
     if(Query::connect() && Query::checkUser(trim($_POST['username']))){
+
       $msg = 'Username already exists';
     }else{
 
@@ -24,7 +26,7 @@ if(isset($_POST['submit'])){
   }
   // Checks if the connection to database is successful and the input
   // username already exists in the database or not. If username already
-  // exists in the database, show warning message.
+  // exists in the database, show a warning message.
 
 }
 ?>
@@ -87,7 +89,7 @@ if(isset($_POST['submit'])){
       <?=$msg??'' ?>
     </p>
     <hr>
-    <p class="opts">Already an user? <a id="reset" href="/login"> Log
+    <p class="opts">Already a user? <a id="reset" href="/login"> Log
         in</a></p>
   </div>
   <div class="circle c1"></div>
