@@ -9,8 +9,11 @@ if(isset($_POST['submit'])){
   }elseif(preg_match('/^[A-Za-z]{1,28}$/',trim($_POST['first_name'])) &&
     preg_match('/^[A-Za-z]{1,28}$/',trim($_POST['last_name']))
     && preg_match('/^[A-Za-z0-9._]{1,28}$/',trim($_POST['username']))){
-    if(Query::connect() && Query::checkUser(trim($_POST['username']))){
 
+    // Checks if the connection to database is successful and the input
+    // username already exists in the database or not. If username already
+    // exists in the database, shows a warning message.
+    if(Query::connect() && Query::checkUser(trim($_POST['username']))){
       $msg = 'Username already exists';
     }else{
 
@@ -24,10 +27,6 @@ if(isset($_POST['submit'])){
   }else{
     $msg = 'Invalid input format';
   }
-  // Checks if the connection to database is successful and the input
-  // username already exists in the database or not. If username already
-  // exists in the database, show a warning message.
-
 }
 ?>
 <!DOCTYPE html>

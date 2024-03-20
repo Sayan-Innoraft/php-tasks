@@ -2,7 +2,7 @@
 // If both passwords match, shows green matching text, else shows red Not
 // Matching text.
 $('form').validate();
-$('#password1, #password2').on('keyup', function () {
+$('#password2').on('keyup', function () {
   if ($('#password1').val() === $('#password2').val()) {
     $('#message').html('Matching').css('color', 'green');
     $('#submit').prop('disabled', false);

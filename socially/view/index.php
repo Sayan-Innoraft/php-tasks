@@ -2,6 +2,8 @@
 
 $request = $_SERVER['REQUEST_URI'];
 
+
+// Routes to the files.
 switch ($request) {
   case '':
   case '/':

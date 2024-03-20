@@ -14,9 +14,13 @@ if (!isset ($_SESSION['username']) || !isset ($_SESSION['password'])) {
   header('Location: /login');
   exit();
 } elseif (Query::connect()) {
+
   if (isset ($_POST['submit'])) {
-    $target_file = 'uploads/' . $_SESSION['username'] . '_' . basename
-    ($_FILES['post']['name']);
+    $target_file = 'uploads/' . $_SESSION['username'] . '_' . str_replace(
+      " ",
+      "",
+      basename($_FILES['post']['name'])
+    );
     $tmp = $_FILES['post']['tmp_name'];
     $post_text = htmlentities($_POST['post_text']);
     move_uploaded_file($tmp, $target_file);
@@ -42,9 +46,9 @@ if (!isset ($_SESSION['username']) || !isset ($_SESSION['password'])) {
 
   <!-- Welcomes user after authenticating. -->
   <!--  the username and password successfully. -->
-
   <body>
     <header>
+      <!--When clicks to Socially, redirects to homepage.-->
       <h2><a href="/home">Socially</a></h2>
 
       <form id="search" action="" method="post">
@@ -57,6 +61,7 @@ if (!isset ($_SESSION['username']) || !isset ($_SESSION['password'])) {
 
       <?php
 
+      // Redirects to profile if the profile exists.
       if (isset ($_POST['search'])) {
         header('Location:/profile.php?p=' . trim($_POST['search_username']));
         exit;
@@ -69,8 +74,8 @@ if (!isset ($_SESSION['username']) || !isset ($_SESSION['password'])) {
             <?= $_SESSION['username'] ?>
           </a>
         </p>
-        <!-- Logs out user, removes values form the session variable and destroys
-    the session.  -->
+        <!-- Logs out user, removes values form the session variable and
+   destroys the session.  -->
         <a class="logout" href='/logout'>Logout</a>
       </div>
     </header>
@@ -81,51 +86,56 @@ if (!isset ($_SESSION['username']) || !isset ($_SESSION['password'])) {
         <input id="post_text" type="text" name="post_text"
           placeholder="type something nice...">
         <label for='post' id='img_upload'><img id="input_img"
-            src='attachment.png'></label>
+            src='assets/attachment.png'></label>
         <input accept="image/*, audio/*, video/*" id="post" name="post"
           type="file" />
         <input id="btn" name="submit" type="submit" value="Post">
       </form>
     </div>
     <div id="posts" class="posts">
+
       <?php
 
+      // Loads initial 5 posts when page loads.
       require '../controller/load_posts.php';
 
       ?>
     </div>
+
+    <!--Button to load more posts.-->
     <input type="button" id='load_more' value="Load More">
     <input type="hidden" id="start" value=0>
     <script
       src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js">
       </script>
-      <script>
-        $(document).ready(
-  function () {
-    $('#load_more').click(function () {
-      $start = parseInt($('#start').val());
-      $start = $start + 5;
-      $('#start').val($start);
-      $.ajax({
-        url: 'data.php',
-        method: 'POST',
-        data: { 'starting': $start },
-        success: function (response) {
-          if (response !== '') {
-            $('#posts').append(response);
-          } else {
-            $('#load_more').val('No More Posts').prop("disabled", true);
-          }
-        },
-        error: function () {
-          alert('There was some error performing the AJAX call!');
-        }
-      });
-    });
-  }
-)
 
-      </script>
+    <!--Ajax script tpo load posts asynchronously.-->
+    <script>
+      $(document).ready(
+        function () {
+          $('#load_more').click(function () {
+            $start = parseInt($('#start').val());
+            $start = $start + 5;
+            $('#start').val($start);
+            $.ajax({
+              url: 'data.php',
+              method: 'POST',
+              data: { 'starting': $start },
+              success: function (response) {
+                if (response !== '') {
+                  $('#posts').append(response);
+                } else {
+                  $('#load_more').val('No More Posts').prop("disabled", true);
+                }
+              },
+              error: function () {
+                alert('There was some error performing the AJAX call!');
+              }
+            });
+          });
+        }
+      )
+    </script>
     <script src="scripts/script.js"></script>
   </body>
 
@@ -137,4 +147,3 @@ if (!isset ($_SESSION['username']) || !isset ($_SESSION['password'])) {
   echo 'Error connecting to database';
 }
 ?>
-

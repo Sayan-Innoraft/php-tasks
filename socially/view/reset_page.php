@@ -1,31 +1,41 @@
 <?php
 
 require '../model/Query.php';
+require '../controller/password_validation.php';
 
-if(isset($_POST['submit'])){
+if (isset($_POST['submit'])) {
 
-  // Checks if the connection to the database is successful and the username
-  // exists in the database.
-  if(preg_match('/^[A-Za-z0-9._]{1,28}$/',trim($_POST['username']))){
-    if(Query::connect() && Query::checkUser(trim($_POST['username']))){
+// Checks if the password is valid or not.
+  if (is_password_valid(trim($_POST['new_password']), trim($_POST['new_password'])
+    ) !== 'SUCCESS') {
+    $msg = is_password_valid($_POST['password1'], $_POST['password2']);
+  }
+  elseif (preg_match('/^[A-Za-z0-9._]{1,28}$/', trim($_POST['username']))) {
 
-      if(Query::getUserPassword(trim($_POST['username'])) ===$_POST['new_password']){
+    // Checks if the connection to the database is successful and the username
+    // exists in the database.
+    if (Query::connect() && Query::checkUser(trim($_POST['username']))) {
+
+      if (Query::getUserPassword(trim($_POST['username'])) === $_POST['new_password']) {
         $msg = 'Same password';
       }
       // If old password to the username doesn't match, show warning.
-      elseif(!Query::resetPassword(trim($_POST['username']),trim($_POST['old_password']),
-        trim($_POST['new_password']))){
+      elseif (!Query::resetPassword(trim($_POST['username']), trim($_POST['old_password']),
+        trim($_POST['new_password']))) {
         $msg = 'Wrong old password';
-      }else{
+      }
+      else {
 
         // If resetting password successful, redirects to the login page.
         header('Location:/login');
         exit();
       }
-    }else{
+    }
+    else {
       $msg = 'username doesn\'t exist';
     }
-  }else{
+  }
+  else {
     $msg = 'invalid username';
   }
 }
@@ -52,7 +62,7 @@ if(isset($_POST['submit'])){
         <p>
           <label for="username">Username</label>
           <input type="text" name="username" id="username"
-                 pattern="^[A-Za-z0-9._#$@!&%*]{1,28}$"
+                 pattern="^[A-Za-z0-9._]{1,28}$"
                  placeholder="Username" required>
         </p>
         <p>
@@ -74,10 +84,10 @@ if(isset($_POST['submit'])){
 
     </main>
     <p class="error">
-      <?=$msg??'' ?>
+      <?= $msg ?? '' ?>
     </p>
     <hr>
-    <p class="opts" ><a href="/login">Log in</a></p>
+    <p class="opts"><a href="/login">Log in</a></p>
   </div>
   <div class="circle c1"></div>
   <div class="circle c2"></div>

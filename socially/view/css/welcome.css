@@ -167,6 +167,10 @@ body .posts .post .post-audio audio {
   transform: translateX(-50%);
   width: 500px;
 }
+body .posts .post .post-video video {
+  border: 0.5px solid black;
+  border-radius: 8px;
+}
 body #load_more {
   position: relative;
   left: 50%;
