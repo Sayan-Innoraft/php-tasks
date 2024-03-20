@@ -2,6 +2,14 @@
 
 $request = $_SERVER['REQUEST_URI'];
 
+if (str_starts_with($request, '/profile_photos')) {
+  header('Location:/home');
+  exit();
+}
+if (str_starts_with($request, '/uploads')) {
+  header('Location:/home');
+  exit();
+}
 
 // Routes to the files.
 switch ($request) {
@@ -28,12 +36,4 @@ switch ($request) {
   case "/profile":
     require __DIR__ . "/profile.php";
     break;
-}
-if (str_starts_with($request, '/profile_photos')) {
-  header('Location:/home');
-  exit();
-}
-if (str_starts_with($request, '/uploads')) {
-  header('Location:/home');
-  exit();
 }
