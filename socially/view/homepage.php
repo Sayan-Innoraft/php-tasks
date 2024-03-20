@@ -63,7 +63,7 @@ if (!isset ($_SESSION['username']) || !isset ($_SESSION['password'])) {
 
       // Redirects to profile if the profile exists.
       if (isset ($_POST['search'])) {
-        header('Location:/profile.php?p=' . trim($_POST['search_username']));
+        header('Location:/profile.php?p=' . trim(htmlentities($_POST['search_username'])));
         exit;
       }
       ?>

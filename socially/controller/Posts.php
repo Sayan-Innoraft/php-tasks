@@ -7,22 +7,20 @@ Query::connect();
 /**
  * Post class connects to database, fetch post data from database.
  */
-class Posts
-{
+class Posts {
 
   /**
-   * Fetch specified number of posts and returns post data as array.
+   * Fetch specified number of posts and returns post data as an array.
    *
    * @param int $start
-   *  Row number from where post-data is needed.
+   *   Row number from where post-data is needed.
    * @param int $end
    *   Number of post-data needed.
    *
    * @return false|array
    *   Returns posts as an associative array.
    */
-  function fetch_posts(int $start, int $end): false|array
-  {
+  function fetch_posts(int $start, int $end):false|array {
     $all_posts = Query::showPost($start, $end);
     $posts_array = array();
     $id = 0;
