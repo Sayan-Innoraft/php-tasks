@@ -1,48 +1,54 @@
 <?php
 
-require_once '../model/Query.php';
+require_once '../controller/Posts.php';
 
 // Takes the starting value from where the next posts will be shown to the user.
 $start = $_POST['starting'];
-Query::connect();
+$posts = new Posts();
 
 // Loads next 5 posts.
-$all_posts = Query::showPost($start, 5);
+$data = $posts->fetch_posts($start, 5);
 $output = '';
-while ($post = mysqli_fetch_assoc($all_posts)) {
+foreach ($data as $item => $datum) {
+  $user = $datum['user'];
+  $text = $datum['text'];
+  $post = $datum['post'];
+  $post_time = $datum['post_time'];
   $pfp = '';
-  if (file_exists("profile_photos/{$post['username']}.jpeg")) {
-    $pfp = "profile_photos/{$post['username']}.jpeg";
-  } else {
+  if (file_exists("profile_photos/{$user}.jpeg")) {
+    $pfp = "profile_photos/{$user}.jpeg";
+  }
+  else {
     $pfp = 'assets/user.png';
   }
   $output .= '<div class="post">
   <div class="top">
-    <img src=' . $pfp . '><a href="profile.php?p=' . $post['username'] .
-    '" class="username">' . $post['username'] . '</a>
-    <p class="post_time">' . $post['post_time'] . '</p>
+    <img src=' . $pfp . '><a href="profile.php?p=' . $user .
+    '" class="username">' . $user . '</a>
+    <p class="post_time">' . $post_time . '</p>
   </div>
-  <p class="post-text">' . $post['text'] .
+  <p class="post-text">' . $text .
     '</p>';
 
-  if ($post['post'] !== '' && $post['post'] !== null) {
-    if (str_starts_with(mime_content_type($post['post']), 'image')) {
+  if ($post !== '' && $post !== null) {
+    if (str_starts_with(mime_content_type($post), 'image')) {
       $output .= '<div class="post-img">
-                  <img src="' . $post['post'] . '">
+                  <img src="' . $post . '">
               </div>';
-    } elseif (str_starts_with(mime_content_type($post['post']), 'audio')) {
+    }
+    elseif (str_starts_with(mime_content_type($post), 'audio')) {
       $output .= '<div class="post-audio">
-                  <audio controls src="' . $post['post'] . '"></audio>
+                  <audio controls src="' . $post . '"></audio>
               </div>';
-    } elseif (str_starts_with(mime_content_type($post['post']), 'video')) {
+    }
+    elseif (str_starts_with(mime_content_type($post), 'video')) {
       $output .= '<div class="post-video">
         <video controls loop play width="660px">
-          <source src="' . $post['post'] . '"/>
+          <source src="' . $post . '"/>
         </video>
       </div>';
     }
   }
   $output .= '</div>';
-
 }
 echo $output;

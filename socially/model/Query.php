@@ -59,7 +59,8 @@ class Query
                           string $last_name, string $password): bool
   {
     if ($username != null && $password != null) {
-      $sql1 = "INSERT INTO users(username, first_name, last_name) VALUE ('$username', '$first_name','$last_name')";
+      $sql1 = "INSERT INTO users(username, first_name, last_name)
+                VALUE ('$username', '$first_name','$last_name')";
       $sql2 = "INSERT INTO user_password VALUE ( '$username','$password')";
       return mysqli_query(self::$conn, $sql1) && mysqli_query(self::$conn,
           $sql2);
@@ -81,10 +82,12 @@ class Query
    * @return bool
    *   Returns true if operation successful, else returns false.
    */
-  static function resetPassword(string $name, string $oldPass, string $newPass): bool
+  static function resetPassword(string $name, string $oldPass, string $newPass):
+  bool
   {
     if (self::getUserPassword($name) == $oldPass) {
-      $sql = "UPDATE user_password SET password = '$newPass' WHERE username = '$name'";
+      $sql = "UPDATE user_password SET password = '$newPass'
+                     WHERE username = '$name'";
       return (bool)mysqli_query(self::$conn, $sql);
     }
     else {
@@ -206,7 +209,9 @@ class Query
    */
   static function uprateProfile(string $username, ?string $firstName, ?string $lastName, ?string $email, ?string $bio, ?string $image): bool
   {
-    $sql = "UPDATE users SET first_name = '$firstName', last_name = '$lastName', profile_photo = '$image', email = '$email', bio = '$bio' WHERE username = '$username'";
+    $sql = "UPDATE users SET first_name = '$firstName', last_name = '$lastName',
+                 profile_photo = '$image', email = '$email', bio = '$bio'
+             WHERE username = '$username'";
     return mysqli_query(self::$conn, $sql);
   }
 
