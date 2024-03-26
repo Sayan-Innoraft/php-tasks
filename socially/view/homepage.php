@@ -1,40 +1,7 @@
 <?php
 
-require '../model/Query.php';
-
-session_start();
-
-// If username and passwords aren't stored in the SESSION variable then
-// redirects to login page.
-if (!isset ($_SESSION['username']) || !isset ($_SESSION['password'])) {
-
-  // Setting the error message in the error key in SESSION to show error in
-  // the login page.
-  $_SESSION['error'] = 'User not logged in';
-  header('Location: /login');
-  exit();
-} elseif (Query::connect()) {
-
-  if (isset ($_POST['submit'])) {
-    $target_file = 'uploads/' . $_SESSION['username'] . '_' . str_replace(
-      " ",
-      "",
-      basename($_FILES['post']['name'])
-    );
-    $tmp = $_FILES['post']['tmp_name'];
-    $post_text = htmlentities($_POST['post_text']);
-    move_uploaded_file($tmp, $target_file);
-    $post = $target_file;
-    if ($post_text != null && $tmp != null) {
-      Query::addPost($_SESSION['username'], $post_text, $post);
-    } elseif ($post_text != null && $tmp == null) {
-      Query::addPost($_SESSION['username'], $post_text, null);
-    } elseif ($post_text == null && $tmp != null) {
-      Query::addPost($_SESSION['username'], null, $post);
-    }
-    unset($_POST);
-  }
-  ?>
+require '../controller/homepage_controller.php';
+?>
   <!DOCTYPE html>
   <html lang="en">
 
@@ -53,17 +20,22 @@ if (!isset ($_SESSION['username']) || !isset ($_SESSION['password'])) {
 
       <form id="search" action="" method="post">
         <label>
-          <input type="text" name="search_username" id="search_bar"
+          <input type="text" name="search_username" list="search-list"
+                 id="search-bar"
             placeholder="Username" required>
         </label>
-        <input type="submit" id="search_button" value="Search" name="search">
+        <datalist id="search-list">
+        </datalist>
+
+        <input type="submit" id="search-button" value="Search" name="search">
       </form>
 
       <?php
 
       // Redirects to profile if the profile exists.
       if (isset ($_POST['search'])) {
-        header('Location:/profile.php?p=' . trim(htmlentities($_POST['search_username'])));
+        header('Location:/profile.php?p=' .
+          trim(htmlentities($_POST['search_username'])));
         exit;
       }
       ?>
@@ -96,7 +68,7 @@ if (!isset ($_SESSION['username']) || !isset ($_SESSION['password'])) {
 
       <?php
 
-      // Loads initial 5 posts when page loads.
+      // Loads initial 5 posts when the page loads.
       require '../controller/load_posts.php';
 
       ?>
@@ -108,42 +80,9 @@ if (!isset ($_SESSION['username']) || !isset ($_SESSION['password'])) {
     <script
       src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js">
       </script>
+    <script src="scripts/ajax.js"></script>
 
-    <!--Ajax script tpo load posts asynchronously.-->
-    <script>
-      $(document).ready(
-        function () {
-          $('#load_more').click(function () {
-            $start = parseInt($('#start').val());
-            $start = $start + 5;
-            $('#start').val($start);
-            $.ajax({
-              url: 'data.php',
-              method: 'POST',
-              data: { 'starting': $start },
-              success: function (response) {
-                if (response !== '') {
-                  $('#posts').append(response);
-                } else {
-                  $('#load_more').val('No More Posts').prop("disabled", true);
-                }
-              },
-              error: function () {
-                alert('There was some error performing the AJAX call!');
-              }
-            });
-          });
-        }
-      )
-    </script>
     <script src="scripts/script.js"></script>
   </body>
 
   </html>
-
-  <?php
-
-} else {
-  echo 'Error connecting to database';
-}
-?>

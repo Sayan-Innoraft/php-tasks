@@ -1,8 +1,3 @@
-<?php
-
-// Takes global variables from load_posts.php file.
-global $user, $post_time, $text, $post;
-?>
 <div class="post">
   <div class="top">
 

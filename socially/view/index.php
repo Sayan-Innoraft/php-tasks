@@ -18,20 +18,17 @@ switch ($request) {
   case '/login':
     require __DIR__ . '/login.php';
     break;
-
   case '/home':
     require __DIR__ . '/homepage.php';
     break;
-
   case '/register':
     require __DIR__ . '/register_page.php';
     break;
-
   case '/reset':
     require __DIR__ . '/reset_page.php';
     break;
   case '/logout':
-    require __DIR__ . '/logout.php';
+    require __DIR__ . '/../controller/logout.php';
     break;
   case "/profile":
     require __DIR__ . "/profile.php";

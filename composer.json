@@ -3,6 +3,8 @@
     "guzzlehttp/guzzle": "^7.8",
     "ext-mysqli": "*",
     "ext-mbstring": "*",
-    "ext-fileinfo": "*"
+    "ext-fileinfo": "*",
+    "ext-curl": "*",
+    "google/apiclient": "*"
   }
 }

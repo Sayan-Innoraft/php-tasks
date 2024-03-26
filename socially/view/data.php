@@ -6,15 +6,18 @@ require_once '../controller/Posts.php';
 $start = $_POST['starting'];
 $posts = new Posts();
 
-// Loads next 5 posts.
+// Loads next 5 posts from start index.
 $data = $posts->fetch_posts($start, 5);
-$output = '';
 foreach ($data as $item => $datum) {
   $user = $datum['user'];
   $text = $datum['text'];
   $post = $datum['post'];
   $post_time = $datum['post_time'];
   $pfp = '';
+  $output = '';
+
+  // If a profile photo exists, display that, else show the default blank user
+  // image.
   if (file_exists("profile_photos/{$user}.jpeg")) {
     $pfp = "profile_photos/{$user}.jpeg";
   }
@@ -30,6 +33,7 @@ foreach ($data as $item => $datum) {
   <p class="post-text">' . $text .
     '</p>';
 
+  // Checks the post-media type before displaying to the web page.
   if ($post !== '' && $post !== null) {
     if (str_starts_with(mime_content_type($post), 'image')) {
       $output .= '<div class="post-img">
@@ -50,5 +54,5 @@ foreach ($data as $item => $datum) {
     }
   }
   $output .= '</div>';
+  echo $output;
 }
-echo $output;

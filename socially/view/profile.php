@@ -149,7 +149,6 @@ if (Query::connect() && $profile = Query::getProfile($username)) {
 
   <div class="circle c1"></div>
   <div class="circle c2"></div>
-
   </body>
 
   </html>

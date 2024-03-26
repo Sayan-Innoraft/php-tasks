@@ -2,8 +2,6 @@
 
 require_once '../model/Query.php';
 
-Query::connect();
-
 /**
  * Post class connects to database, fetch post data from database.
  */
@@ -20,7 +18,8 @@ class Posts {
    * @return false|array
    *   Returns posts as an associative array.
    */
-  function fetch_posts(int $start, int $end):false|array {
+  public function fetch_posts(int $start, int $end):false|array {
+    Query::connect();
     $all_posts = Query::showPost($start, $end);
     $posts_array = array();
     $id = 0;
