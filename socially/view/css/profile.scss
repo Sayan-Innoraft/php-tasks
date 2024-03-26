@@ -1,0 +1,144 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+  header {
+    height: 6vh;
+    width: 100vw;
+    margin: auto;
+    background-color: #87c1e8;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 200px;
+
+    h2 {
+      a {
+        text-decoration: none;
+        color: black;
+      }
+    }
+
+    #logout {
+      margin: 0 5px;
+      font-size: 18px;
+      text-decoration: none;
+      color: blue;
+    }
+  }
+
+  .outer-box {
+    width: 100vw;
+    height: 94vh;
+    background: linear-gradient(to top left, #3ed8ff, #a8f5ff);
+
+    .inner-box {
+      margin: auto;
+      position: relative;
+      top: 50%;
+      width: 400px;
+      transform: translateY(-50%);
+      padding: 20px;
+      border: 3px solid #ffffffff;
+      border-radius: 10px;
+      backdrop-filter: blur(8px);
+      box-shadow: 1px 1px 5px #2779b0;
+      z-index: 2;
+
+      .profile-header {
+        img {
+          width: 150px;
+          border-radius: 50%;
+        }
+
+        h1 {
+          font-size: 2.5rem;
+          color: #212121;
+        }
+
+        p {
+          font-size: 0.8rem;
+          color: #555;
+        }
+      }
+
+      .profile-body {
+        margin: 20px 0;
+
+        p {
+          margin: 8px 0;
+
+          label {
+            display: block;
+            font-weight: bold;
+          }
+
+          input {
+            margin-top: 4px;
+            width: 100%;
+            padding: 8px;
+            font-size: 1rem;
+            border: 2px solid #cccc;
+            border-radius: 5px;
+
+            &[type="submit"] {
+              background-color: #3498db;
+              border: none;
+              color: white;
+              cursor: pointer;
+
+              &:hover {
+                background-color: #2779b0;
+              }
+            }
+          }
+        }
+
+        #img_upload {
+          display: inline-block;
+          border: 1px solid rgb(0, 119, 255);
+          padding: 10px;
+          border-radius: 20px;
+          background-color: #f9f9f9;
+          color: #333;
+          cursor: pointer;
+
+          img {
+            height: 30px;
+          }
+
+          &hover {
+            border-color: #999;
+          }
+        }
+
+        #image {
+          display: none;
+        }
+
+      }
+    }
+
+    .circle {
+      height: 200px;
+      width: 200px;
+      border-radius: 50%;
+      background: linear-gradient(to top right, #ffffff33, #ffffffff);
+      position: absolute;
+    }
+
+    .c1 {
+      top: 150px;
+      left: 40px;
+    }
+
+    .c2 {
+      top: 400px;
+      right: 40px;
+    }
+  }
+}

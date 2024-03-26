@@ -1,0 +1,208 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  width: 100vw;
+  background-color: #a9eeff;
+}
+body header {
+  width: 100%;
+  margin: auto;
+  position: fixed;
+  z-index: 2;
+  background-color: #87c1e8;
+  top: 0;
+  align-items: flex-start;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 200px;
+}
+body header h2 a {
+  text-decoration: none;
+  color: black;
+}
+body header .user {
+  display: flex;
+  justify-content: space-between;
+}
+body header .user p,
+body header .user .name {
+  font-size: 20px;
+  margin: 0 5px;
+  color: gray;
+}
+body header .user a {
+  margin: 0 5px;
+  font-size: 18px;
+  text-decoration: none;
+  color: blue;
+}
+body header #search #search-bar {
+  width: 250px;
+  height: 40px;
+  padding: 0 5px;
+  border: 1px solid black;
+  border-radius: 8px;
+}
+body header #search #search-button {
+  cursor: pointer;
+  height: 40px;
+  width: 80px;
+  border: 1px solid black;
+  border-radius: 8px;
+}
+body header #search datalist {
+  position: absolute;
+  background-color: white;
+  border: 1px solid blue;
+  border-radius: 0 0 5px 5px;
+  border-top: none;
+  font-family: sans-serif;
+  width: 350px;
+  padding: 5px;
+  max-height: 10rem;
+  overflow-y: auto;
+}
+body header #search option {
+  background-color: white;
+  padding: 4px;
+  color: blue;
+  margin-bottom: 1px;
+  font-size: 18px;
+  cursor: pointer;
+}
+body header #search option:hover,
+body header #search .active {
+  background-color: lightblue;
+}
+body .add-post-container {
+  margin-top: 80px;
+}
+body .add-post-container .add-post {
+  margin: auto;
+  display: flex;
+  height: 50px;
+  width: 700px;
+}
+body .add-post-container .add-post input {
+  display: inline-block;
+}
+body .add-post-container .add-post #post_text {
+  width: 500px;
+  padding: 0 8px;
+  font-size: 16px;
+  color: #3b0fff;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  border: 1px solid rgb(0, 119, 255);
+}
+body .add-post-container .add-post #img_upload {
+  display: inline-block;
+  border: 1px solid rgb(0, 119, 255);
+  padding: 10px;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  background-color: #f9f9f9;
+  color: #333;
+  cursor: pointer;
+}
+body .add-post-container .add-post #img_upload img {
+  height: 30px;
+}
+body .add-post-container .add-post #img_uploadhover {
+  border-color: #999;
+}
+body .add-post-container .add-post #post {
+  display: none;
+}
+body .add-post-container .add-post #btn {
+  margin-left: 50px;
+  width: 80px;
+  border-radius: 20px;
+  border: 1px solid rgb(0, 119, 255);
+  cursor: pointer;
+}
+body .posts {
+  top: 100px;
+  width: 1000px;
+  margin: auto;
+}
+body .posts .post {
+  border-radius: 15px;
+  margin: 15px auto;
+  width: 700px;
+  background-color: #3ed8ff;
+  padding: 20px;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+}
+body .posts .post .top {
+  display: flex;
+  height: 40px;
+  align-items: center;
+  position: relative;
+}
+body .posts .post .top img {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  background-color: gray;
+}
+body .posts .post .top .username {
+  margin: 0 8px;
+  font-size: 18px;
+  align-items: center;
+  text-decoration: none;
+  color: rgb(84, 84, 84);
+}
+body .posts .post .top .post_time {
+  position: absolute;
+  right: 0;
+  color: #555555;
+}
+body .posts .post .post-text {
+  margin: 10px;
+}
+body .posts .post .post-img {
+  margin: auto;
+  text-align: center;
+  overflow: hidden;
+  width: 660px;
+  height: 700px;
+  -o-object-position: center;
+     object-position: center;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 10px;
+  border: 0.5px solid black;
+}
+body .posts .post .post-img img {
+  height: 100%;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+body .posts .post .post-audio audio {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 500px;
+}
+body .posts .post .post-video video {
+  border: 0.5px solid black;
+  border-radius: 8px;
+}
+body #load_more {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 50px;
+  border-radius: 8px;
+  border: 1px solid black;
+  cursor: pointer;
+  margin: 20px 0 50px;
+}/*# sourceMappingURL=welcome.css.map */
